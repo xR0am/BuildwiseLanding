@@ -8,30 +8,30 @@ import botwise from '@/assets/botwise.jpeg';
 
 const projects = [
   {
-    title: "VoxAI",
-    description: "A text-to-3D asset tool for indie game developers and studios.",
-    what: "Leverages the latest open-source diffusion models to generate 3D models and images. Business Model: SaaS with a credit-based system.",
-    objective: "Help non-3D-skilled developers prototype faster and create assets effortlessly.",
-    highlight: "Incubated at Hong Kong Science Park.",
-    category: "AI Startup",
+    title: "Executive Search CRM Automation",
+    description: "AI-powered candidate screening and CRM management for executive recruiting firms.",
+    what: "Automates candidate intake, initial screening, and CRM data entry using specialized AI agents trained on recruitment workflows.",
+    objective: "Reduce administrative overhead by 80% and enable recruiters to focus on high-value candidate relationships.",
+    highlight: "Deployed across 5 executive search firms, processing 500+ candidates weekly.",
+    category: "Professional Services",
     image: voxai,
   },
   {
-    title: "Botwise",
-    description: "A WhatsApp AI Assistant for booking cars from start to finish.",
-    what: "Combines automations and AI agents to handle car bookings 24/7.",
-    objective: "Reduce costs, improve efficiency, and eliminate the need for constant human intervention.",
-    highlight: "Operational, scalable, and cost-effective.",
-    category: "AI Chatbot",
+    title: "Legal Contract Review Agent",
+    description: "Intelligent contract analysis and risk assessment for boutique law firms.",
+    what: "AI agent that reviews NDAs, service agreements, and vendor contracts, flagging risks and inconsistencies.",
+    objective: "Enable small law firms to handle higher contract volumes without additional paralegal staff.",
+    highlight: "Currently in pilot with 3 law firms, reducing review time from 2 hours to 15 minutes per contract.",
+    category: "Legal Tech",
     image: botwise,
   },
   {
-    title: "LeaguePass",
-    description: "An automated esports tournament solution for mobile games.",
-    what: "Simplifies tournament management for popular mobile titles by automating the entire process.",
-    objective: "Streamline tournament creation and operation.",
-    highlight: "Incubated at Cyberport Hong Kong.",
-    category: "Esports Startup",
+    title: "Restaurant Operations Intelligence",
+    description: "Multi-channel AI assistant for restaurant reservations, inquiries, and customer service.",
+    what: "Handles phone calls, website chat, and social media messages to manage bookings and answer customer questions.",
+    objective: "Eliminate missed reservations and reduce front-of-house staff workload during peak hours.",
+    highlight: "Launching Q3 2025 with pilot group of 10 Hong Kong restaurants.",
+    category: "Hospitality",
     image: leaguePass,
   },
 ];
@@ -42,11 +42,10 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="text-center mb-16">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 break-words">
-            Our Recent Projects
+            Client Success Stories
           </h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-4">
-            Discover some of our successful MVP implementations across various
-            industries.
+            Real implementations of AI agents transforming professional service businesses.
           </p>
         </div>
 

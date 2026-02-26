@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
 import { useLocation } from "wouter";
-import { scrollToSection, openExternalLink } from "@/lib/scroll";
+import { scrollToSection } from "@/lib/scroll";
 
 export default function Hero() {
   const [, setLocation] = useLocation();
@@ -24,25 +24,25 @@ export default function Hero() {
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-border shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-warm-amber animate-pulse"></span>
               <span className="font-sans text-[10px] font-medium text-slate-500 tracking-tight uppercase">
-                60-Second Deployment
+                Enterprise AI Solutions
               </span>
             </div>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-medium tracking-tighter text-warm-charcoal leading-[1.05]">
-              Get OpenClaw Running <span className="text-warm-amber">Instantly</span>
+              Enterprise AI Agents Built <span className="text-warm-amber">For Your Industry</span>
             </h1>
 
             <p className="max-w-xl font-sans text-lg text-slate-600 font-light leading-relaxed">
-              Start with InstantClaw in 60 seconds, or explore Buildwise enterprise solutions for your industry.
+              Buildwise Studios creates vertical-specific AI agents that transform professional services. Get custom solutions tailored to your unique challenges and scale with confidence.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <button
-                onClick={() => openExternalLink("https://instantclaw.co")}
+                onClick={() => setLocation("/ai-product-manager")}
                 className="group relative overflow-hidden bg-warm-amber text-warm-brown text-sm font-bold px-8 py-3.5 rounded shadow-lg shadow-warm-amber/20 transition-all hover:-translate-y-0.5 hover:shadow-xl flex items-center gap-2"
               >
                 <div className="shimmer-layer absolute inset-0 transform -translateX-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shimmer z-10 transition-transform"></div>
-                <span className="relative z-20">Try InstantClaw Free</span>
+                <span className="relative z-20">Talk to AI Product Manager →</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-1 relative z-20">
                   <path d="M5 12h14"></path>
                   <path d="m12 5 7 7-7 7"></path>
@@ -54,7 +54,7 @@ export default function Hero() {
                 className="group relative overflow-hidden bg-white text-warm-charcoal text-sm font-bold px-8 py-3.5 rounded shadow-sm ring-1 ring-warm-amber/10 transition-all hover:scale-[1.02] hover:shadow-md active:scale-[0.98] flex items-center gap-2"
               >
                 <div className="shimmer-layer absolute inset-0 transform -translateX-full bg-gradient-to-r from-transparent via-warm-amber/10 to-transparent group-hover:animate-shimmer z-10 transition-transform"></div>
-                <span className="relative z-20">Enterprise Solutions</span>
+                <span className="relative z-20">See Case Studies</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-1 relative z-20">
                   <path d="M5 12h14"></path>
                   <path d="m12 5 7 7-7 7"></path>
