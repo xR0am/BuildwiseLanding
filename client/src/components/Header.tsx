@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Egg } from "lucide-react";
+import { Menu, Rocket } from "lucide-react";
 import { useLocation } from "wouter";
-import { scrollToSection, openExternalLink } from "@/lib/scroll";
+import { scrollToSection } from "@/lib/scroll";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,20 +22,20 @@ export default function Header() {
         <div className="flex justify-between items-center h-16 w-full">
           {/* Logo and Brand */}
           <div className="flex items-center">
-            <Egg className="h-6 w-6 sm:h-8 sm:w-8 text-warm-amber" />
+            <Rocket className="h-6 w-6 sm:h-8 sm:w-8 text-warm-amber" />
             <div className="ml-2 flex flex-col">
-              <span className="text-lg sm:text-xl font-bold text-gray-900 leading-tight">InstantClaw</span>
-              <span className="text-xs text-gray-500">by Buildwise Studios</span>
+              <span className="text-lg sm:text-xl font-bold text-gray-900 leading-tight">Buildwise Studios</span>
+              <span className="text-xs text-gray-500">Enterprise AI Solutions</span>
             </div>
           </div>
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-3">
             <Button
-              onClick={() => openExternalLink("https://instantclaw.co")}
+              onClick={handleEnterpriseClick}
               className="bg-warm-amber hover:brightness-110"
             >
-              Try InstantClaw →
+              Request Demo
             </Button>
             <Button
               variant="outline"
@@ -58,12 +58,12 @@ export default function Header() {
                 <div className="flex flex-col gap-4 mt-8">
                   <Button
                     onClick={() => {
-                      openExternalLink("https://instantclaw.co");
+                      handleEnterpriseClick();
                       setIsOpen(false);
                     }}
                     className="bg-warm-amber hover:brightness-110 w-full text-gray-900 font-semibold"
                   >
-                    Try InstantClaw →
+                    Request Demo →
                   </Button>
                   <Button
                     variant="outline"

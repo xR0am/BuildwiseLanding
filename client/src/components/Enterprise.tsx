@@ -13,7 +13,7 @@ export default function Enterprise() {
           Need Custom AI Agents?
         </h2>
         <p className="text-center text-slate-600 mb-10 max-w-3xl mx-auto text-lg font-light leading-relaxed">
-          Started with InstantClaw and need enterprise-grade solutions? Buildwise Studios builds vertical-specific AI agents for professional services.
+          Buildwise Studios builds vertical-specific AI agents for professional services. Get custom solutions tailored to your industry's unique challenges and transform your business operations.
         </p>
 
         <button
