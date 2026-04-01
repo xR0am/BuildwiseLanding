@@ -1,10 +1,50 @@
 import React from "react";
+import { Play } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+
+const DEMO_VIDEOS = {
+  market: "/videos/market-intelligence-demo.mp4",
+  office: "/videos/office-assistant-demo.mp4",
+  crm: "/videos/crm-intelligence-demo.mp4",
+} as const;
 
 const ShowcaseSection: React.FC = () => {
+  const [activeDemo, setActiveDemo] = React.useState<{
+    id: string;
+    title: string;
+    src: string;
+  } | null>(null);
+  const modalVideoRef = React.useRef<HTMLVideoElement | null>(null);
+
+  const tryPlayModal = React.useCallback(() => {
+    const el = modalVideoRef.current;
+    if (!el) return;
+    void el.play().catch(() => {
+      /* user may need to tap play if autoplay is blocked */
+    });
+  }, []);
+
+  React.useEffect(() => {
+    if (!activeDemo) return;
+    const tick = () => {
+      const el = modalVideoRef.current;
+      if (el && el.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) tryPlayModal();
+    };
+    tick();
+    const id = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(id);
+  }, [activeDemo, tryPlayModal]);
+
   const demoData = [
     {
       id: "market",
       name: "Market Intelligence",
+      videoSrc: DEMO_VIDEOS.market,
       icon: "solar:radar-2-linear",
       hook: "Watch a partner discover an executive movement and get instant org chart updates",
       steps: [
@@ -24,6 +64,7 @@ const ShowcaseSection: React.FC = () => {
     {
       id: "office",
       name: "Office Assistant",
+      videoSrc: DEMO_VIDEOS.office,
       icon: "solar:document-linear",
       hook: "See admin work disappear while partners focus on client relationships",
       steps: [
@@ -43,6 +84,7 @@ const ShowcaseSection: React.FC = () => {
     {
       id: "crm",
       name: "CRM Intelligence",
+      videoSrc: DEMO_VIDEOS.crm,
       icon: "fa6-brands:salesforce",
       hook: "Watch CRM updates happen automatically after client meetings",
       steps: [
@@ -63,6 +105,42 @@ const ShowcaseSection: React.FC = () => {
 
   return (
     <section id="showcase" className="relative z-30 py-24 md:py-32 bg-[#F8F7F5] overflow-hidden border-t border-border/40">
+      <Dialog
+        open={activeDemo !== null}
+        onOpenChange={(open) => {
+          if (!open) {
+            modalVideoRef.current?.pause();
+            setActiveDemo(null);
+          }
+        }}
+      >
+        <DialogContent
+          className="z-[100] gap-0 p-0 border-none bg-transparent shadow-none sm:max-w-[min(90vw,48vh)] w-full overflow-visible text-foreground [&>button]:right-2 [&>button]:top-2 [&>button]:z-20 [&>button]:text-white [&>button]:hover:bg-white/10 [&>button]:hover:opacity-100"
+          onCloseAutoFocus={(e) => e.preventDefault()}
+        >
+          {activeDemo && (
+            <>
+              <DialogHeader className="sr-only">
+                <DialogTitle>{activeDemo.title} demo</DialogTitle>
+              </DialogHeader>
+              <div className="relative w-full max-h-[85vh] rounded-xl overflow-hidden bg-black ring-1 ring-white/10 shadow-2xl">
+                <div className="aspect-[9/16] w-full max-h-[85vh] mx-auto flex items-center justify-center bg-black">
+                  <video
+                    ref={modalVideoRef}
+                    key={activeDemo.src}
+                    src={activeDemo.src}
+                    controls
+                    playsInline
+                    onLoadedData={tryPlayModal}
+                    className="w-full h-full max-h-[85vh] object-contain"
+                  />
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 relative z-10">
         {/* Header */}
         <div className="text-center mb-16 md:mb-20">
@@ -93,13 +171,43 @@ const ShowcaseSection: React.FC = () => {
                   {demo.hook}
                 </p>
 
-                {/* Video Placeholder */}
+                {/* Video preview — 9:16; opens full demo in modal */}
                 <div className="bg-slate-50 rounded-xl p-3 font-mono text-sm border border-slate-100 mb-8">
-                  <div className="aspect-video bg-slate-200 rounded-lg flex items-center justify-center text-slate-400 relative group/video cursor-pointer overflow-hidden">
-                    <div className="absolute inset-0 bg-[#1A1A1A]/5 group-hover/video:bg-[#1A1A1A]/0 transition-colors duration-300"></div>
-                    <iconify-icon icon="solar:play-circle-bold" className="text-4xl text-white drop-shadow-lg opacity-80 group-hover/video:scale-110 group-hover/video:opacity-100 transition-all duration-300 z-10" />
-                    <span className="absolute bottom-2 left-2 text-[9px] uppercase font-bold tracking-widest text-slate-500 bg-white/80 px-2 py-0.5 rounded">Live Agent Demo</span>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setActiveDemo({
+                        id: demo.id,
+                        title: demo.name,
+                        src: demo.videoSrc,
+                      })
+                    }
+                    className="relative w-full aspect-[9/16] max-h-[320px] mx-auto rounded-lg overflow-hidden bg-slate-900 ring-1 ring-slate-200/80 group/video cursor-pointer text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A574] focus-visible:ring-offset-2"
+                    aria-label={`Play ${demo.name} demo video`}
+                  >
+                    <video
+                      src={demo.videoSrc}
+                      muted
+                      playsInline
+                      preload="metadata"
+                      className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                    />
+                    <div className="absolute inset-0 bg-[#1A1A1A]/40 group-hover/video:bg-[#1A1A1A]/25 transition-colors duration-300" />
+                    {/* Large play affordance — obvious click target */}
+                    <div
+                      className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 p-0.5 shadow-[0_6px_24px_rgba(0,0,0,0.45)] ring-[2.5px] ring-white/50 transition-transform duration-300 group-hover/video:scale-110 group-hover/video:shadow-[0_8px_28px_rgba(0,0,0,0.5)] h-[2.375rem] w-[2.375rem] sm:h-[2.75rem] sm:w-[2.75rem] md:h-12 md:w-12"
+                      aria-hidden
+                    >
+                      <Play
+                        className="h-[1.05rem] w-[1.05rem] sm:h-5 sm:w-5 md:h-6 md:w-6 text-[#1A1A1A] ml-0.5"
+                        fill="currentColor"
+                        strokeWidth={0}
+                      />
+                    </div>
+                    <span className="absolute bottom-2 left-2 text-[9px] uppercase font-bold tracking-widest text-white bg-black/50 px-2 py-0.5 rounded z-10">
+                      Live Agent Demo
+                    </span>
+                  </button>
                 </div>
 
                 {/* Steps Container */}

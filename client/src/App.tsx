@@ -11,13 +11,15 @@ import PrivacyPolicy from "@/pages/privacy";
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={Home} />
+      {/* Public entry: Intelligence Agents (main landing not ready for launch) */}
+      <Route path="/" component={IntelligenceAgentsLanding} />
+      <Route path="/ai-agents-for-headhunting-professionals" component={IntelligenceAgentsLanding} />
+      <Route path="/home" component={Home} />
       <Route path="/terms-of-services" component={Tos} />
       <Route path="/privacy-policy" component={PrivacyPolicy } />
       <Route path="/ai-product-manager" component={AIProductManager} />
-      <Route path="/ai-agents-for-headhunting-professionals" component={IntelligenceAgentsLanding} />
       <Route path="/intel-agent-scoping-v2" component={HeadhuntingScopingV2} />
-      <Route path="/:rest*" component={Home} />
+      <Route path="/:rest*" component={IntelligenceAgentsLanding} />
     </Switch>
   );
 }
