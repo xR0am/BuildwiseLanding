@@ -6,7 +6,7 @@ import { type ChatMessage, useRealtimeChat } from "@/hooks/use-realtime-chat";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Send } from "lucide-react";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 interface RealtimeChatProps {
   roomName: string;
@@ -60,7 +60,7 @@ export const RealtimeChat = ({
     persona,
   });
   const [newMessage, setNewMessage] = useState("");
-  const [initialPromptSent, setInitialPromptSent] = useState(false);
+  const initialPromptSentRef = useRef(false);
 
   // Merge realtime messages with initial messages
   const allMessages = useMemo(() => {
@@ -152,35 +152,23 @@ export const RealtimeChat = ({
 
   // Auto-send visible opener when chat connects (same path as manual sends)
   useEffect(() => {
-    if (!isConnected || initialPromptSent || realtimeMessages.length > 0) return;
+    if (
+      !isConnected ||
+      initialPromptSentRef.current ||
+      realtimeMessages.length > 0
+    ) {
+      return;
+    }
 
+    initialPromptSentRef.current = true;
     const opener = getInitialOpener(username);
-    let cancelled = false;
-    let openerDone = false;
-
-    const runOpener = async () => {
-      if (openerDone) return true;
-      const sent = await sendMessage(opener);
-      if (cancelled || !sent) return false;
-      openerDone = true;
-      setInitialPromptSent(true);
-      await triggerWebhook(opener);
-      return true;
-    };
 
     void (async () => {
-      if (await runOpener()) return;
-      // Retry once on next frame if channel wasn't ready yet
-      await new Promise((resolve) => requestAnimationFrame(resolve));
-      if (!cancelled) await runOpener();
+      await sendMessage(opener);
+      await triggerWebhook(opener);
     })();
-
-    return () => {
-      cancelled = true;
-    };
   }, [
     isConnected,
-    initialPromptSent,
     realtimeMessages.length,
     username,
     sendMessage,

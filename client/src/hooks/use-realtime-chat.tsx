@@ -64,7 +64,6 @@ export function useRealtimeChat({
   const sendMessage = useCallback(
     async (content: string, senderName?: string): Promise<boolean> => {
       const channel = channelRef.current;
-      if (!channel) return false;
 
       const message: ChatMessage = {
         id: crypto.randomUUID(),
@@ -76,6 +75,8 @@ export function useRealtimeChat({
       };
 
       setMessages((current) => [...current, message]);
+
+      if (!channel) return true;
 
       await channel.send({
         type: "broadcast",
