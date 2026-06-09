@@ -1,7 +1,7 @@
 "use client";
 
 import { createClient } from "@/lib/supabase/client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface UseRealtimeChatProps {
   roomName: string;
@@ -30,7 +30,7 @@ export function useRealtimeChat({
   persona = "general",
 }: UseRealtimeChatProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [channel, setChannel] = useState<ReturnType<
+  const channelRef = useRef<ReturnType<
     ReturnType<typeof createClient>["channel"]
   > | null>(null);
   const [isConnected, setIsConnected] = useState(false);
@@ -39,6 +39,7 @@ export function useRealtimeChat({
   useEffect(() => {
     const supabase = createClient();
     const newChannel = supabase.channel(roomName);
+    channelRef.current = newChannel;
 
     newChannel
       .on("broadcast", { event: EVENT_MESSAGE_TYPE }, (payload) => {
@@ -53,17 +54,17 @@ export function useRealtimeChat({
         }
       });
 
-    setChannel(newChannel);
-
     return () => {
+      channelRef.current = null;
       supabase.removeChannel(newChannel);
       setIsConnected(false);
     };
   }, [roomName]);
 
   const sendMessage = useCallback(
-    async (content: string, senderName?: string) => {
-      if (!channel) return;
+    async (content: string, senderName?: string): Promise<boolean> => {
+      const channel = channelRef.current;
+      if (!channel) return false;
 
       const message: ChatMessage = {
         id: crypto.randomUUID(),
@@ -74,17 +75,17 @@ export function useRealtimeChat({
         createdAt: new Date().toISOString(),
       };
 
-      // Update local state immediately for the sender
       setMessages((current) => [...current, message]);
 
-      // Send message via realtime broadcast
       await channel.send({
         type: "broadcast",
         event: EVENT_MESSAGE_TYPE,
         payload: message,
       });
+
+      return true;
     },
-    [channel, isConnected, username, sessionId],
+    [username],
   );
 
   const sendBotMessage = useCallback(

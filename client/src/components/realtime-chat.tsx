@@ -154,13 +154,30 @@ export const RealtimeChat = ({
   useEffect(() => {
     if (!isConnected || initialPromptSent || realtimeMessages.length > 0) return;
 
-    setInitialPromptSent(true);
     const opener = getInitialOpener(username);
+    let cancelled = false;
+    let openerDone = false;
+
+    const runOpener = async () => {
+      if (openerDone) return true;
+      const sent = await sendMessage(opener);
+      if (cancelled || !sent) return false;
+      openerDone = true;
+      setInitialPromptSent(true);
+      await triggerWebhook(opener);
+      return true;
+    };
 
     void (async () => {
-      await sendMessage(opener);
-      await triggerWebhook(opener);
+      if (await runOpener()) return;
+      // Retry once on next frame if channel wasn't ready yet
+      await new Promise((resolve) => requestAnimationFrame(resolve));
+      if (!cancelled) await runOpener();
     })();
+
+    return () => {
+      cancelled = true;
+    };
   }, [
     isConnected,
     initialPromptSent,
