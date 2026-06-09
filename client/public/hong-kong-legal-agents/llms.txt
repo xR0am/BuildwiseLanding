@@ -1,0 +1,20 @@
+# Buildwise Studios — Hong Kong Legal
+
+> Workflow AI agents for Hong Kong legal teams — contract triage, first-pass review, and deadline tracking inside your environment and playbooks.
+
+Buildwise Studios builds legal workflow agents for Hong Kong law firms, in-house teams, and businesses with growing legal workload. Every output is a draft for lawyer review — agents do the first pass; qualified lawyers verify and decide.
+
+## Primary
+
+- [Hong Kong Legal vertical (markdown)](https://buildwise-studios.com/hong-kong-legal-agents/vertical.md): Full landing page content — who it's for, pain points, agents, FAQs
+- [Live landing page](https://buildwise-studios.com/hong-kong-legal-agents): Human-readable SPA for Hong Kong legal workflow agents
+- [Alternate URL](https://buildwise-studios.com/ai-agents-for-hong-kong-law-firms): Same vertical, alternate route
+
+## Actions
+
+- [Book a scoping call](https://cal.com/charles-fauchet-buildwise/intelligence-agents): Schedule value discovery for legal workflow agents
+- [Buildwise hub](https://buildwise-studios.com/llms.txt): Return to the main Buildwise Studios LLM manifest
+
+## Optional
+
+- [Buildwise hub (markdown)](https://buildwise-studios.com/landing.md): Home hub overview and all verticals

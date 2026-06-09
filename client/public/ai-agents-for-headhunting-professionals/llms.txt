@@ -1,0 +1,20 @@
+# Buildwise Studios — Executive Search
+
+> Intelligence agents for executive search firms that handle market intelligence, CRM updates, and office admin so partners can focus on relationships and placements.
+
+Buildwise Studios deploys purpose-built AI agents for headhunting — trained on executive search workflows, not generic inbox tasks. Partners typically reclaim 20+ hours per month per person on work that does not close deals.
+
+## Primary
+
+- [Executive Search vertical (markdown)](https://buildwise-studios.com/ai-agents-for-headhunting-professionals/vertical.md): Full landing page content — agents, pain points, value discovery, FAQs
+- [Live landing page](https://buildwise-studios.com/ai-agents-for-headhunting-professionals): Human-readable SPA for executive search intelligence agents
+
+## Actions
+
+- [Book a partnership call](https://cal.com/charles-fauchet-buildwise/intelligence-agents): Schedule a value discovery / partnership conversation
+- [Jason scoping session](https://buildwise-studios.com/intel-agent-scoping-v2): AI scoping chat for headhunting partnerships
+- [Buildwise hub](https://buildwise-studios.com/llms.txt): Return to the main Buildwise Studios LLM manifest
+
+## Optional
+
+- [Buildwise hub (markdown)](https://buildwise-studios.com/landing.md): Home hub overview and all verticals

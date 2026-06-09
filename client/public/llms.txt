@@ -1,0 +1,22 @@
+# Buildwise Studios
+
+> Buildwise Studios builds workflow AI agents for professional services. The home hub routes visitors to live vertical landing pages or Jason scoping for custom industries.
+
+We ship vertical-specific agents — not generic chatbots. Live today: executive search intelligence agents and Hong Kong legal workflow agents. If your industry is not listed, Jason (our AI scoping agent) maps workflows in about ten minutes and routes you to the right vertical or a custom proposal.
+
+## Hub
+
+- [Hub landing (markdown)](https://buildwise-studios.com/landing.md): Full text summary of the Buildwise Studios home page at /
+
+## Verticals
+
+- [Executive Search](https://buildwise-studios.com/ai-agents-for-headhunting-professionals/llms.txt): Intelligence agents for headhunting firms — market moves, CRM, and admin off the partner's plate
+- [Hong Kong Legal](https://buildwise-studios.com/hong-kong-legal-agents/llms.txt): Workflow agents for HK law firms, in-house teams, and businesses — contract triage, review, and deadlines
+
+## Optional
+
+- [Jason scoping (headhunting)](https://buildwise-studios.com/intel-agent-scoping-v2): AI scoping chat tailored to executive search partnerships
+- [Jason scoping (general)](https://buildwise-studios.com/ai-product-manager): AI product manager scoping chat for custom workflow builds
+- [Legal landing (alias)](https://buildwise-studios.com/ai-agents-for-hong-kong-law-firms): Same Hong Kong legal vertical, alternate URL
+- [Privacy Policy](https://buildwise-studios.com/privacy-policy): Privacy policy for Buildwise Studios
+- [Terms of Service](https://buildwise-studios.com/terms-of-services): Terms of service
