@@ -87,7 +87,7 @@ export default function Home() {
                 <span className="relative z-20">See our verticals</span>
               </a>
               <Link
-                href={VERTICAL_ROUTES.scoping}
+                href="/ai-product-manager"
                 className="text-sm font-semibold text-[#1A1A1A] hover:text-[#D4A574] transition-colors"
               >
                 Scope with Jason →
@@ -111,7 +111,7 @@ export default function Home() {
               sends a custom proposal within 24 hours.
             </p>
             <Link
-              href={VERTICAL_ROUTES.scoping}
+              href="/ai-product-manager"
               className="group relative overflow-hidden inline-flex items-center gap-2 bg-[#D4A574] text-[#2D1B10] px-8 py-3.5 rounded-lg text-sm font-bold transition shadow-lg shadow-[#D4A574]/20 hover:-translate-y-0.5"
             >
               <span className="relative z-20">Talk to Jason</span>

@@ -20,6 +20,8 @@ interface RealtimeChatProps {
   accentColor?: "teal" | "gold";
 }
 
+const getInitialOpener = (name: string) => `Hi Jason, I am ${name}!`;
+
 /**
  * Realtime chat component
  * @param roomName - The name of the room to join. Each room is a unique chat.
@@ -148,13 +150,25 @@ export const RealtimeChat = ({
     }
   }, [sessionId, username, webhookUrl, persona, sendBotMessage, setTypingIndicator]);
 
-  // Handle initial "quiet" prompt
+  // Auto-send visible opener when chat connects (same path as manual sends)
   useEffect(() => {
-    if (isConnected && !initialPromptSent && realtimeMessages.length === 0) {
-      setInitialPromptSent(true);
-      triggerWebhook(`${username} with the following email address ${userEmail} just started a conversation. Validate their email and introduce yourself.`);
-    }
-  }, [isConnected, initialPromptSent, realtimeMessages.length, username, userEmail, triggerWebhook]);
+    if (!isConnected || initialPromptSent || realtimeMessages.length > 0) return;
+
+    setInitialPromptSent(true);
+    const opener = getInitialOpener(username);
+
+    void (async () => {
+      await sendMessage(opener);
+      await triggerWebhook(opener);
+    })();
+  }, [
+    isConnected,
+    initialPromptSent,
+    realtimeMessages.length,
+    username,
+    sendMessage,
+    triggerWebhook,
+  ]);
 
   const handleSendMessage = useCallback(
     async (e: React.FormEvent) => {
