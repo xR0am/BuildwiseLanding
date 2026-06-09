@@ -152,11 +152,7 @@ export const RealtimeChat = ({
 
   // Auto-send visible opener when chat connects (same path as manual sends)
   useEffect(() => {
-    if (
-      !isConnected ||
-      initialPromptSentRef.current ||
-      realtimeMessages.length > 0
-    ) {
+    if (initialPromptSentRef.current || !username.trim()) {
       return;
     }
 
@@ -168,8 +164,6 @@ export const RealtimeChat = ({
       await triggerWebhook(opener);
     })();
   }, [
-    isConnected,
-    realtimeMessages.length,
     username,
     sendMessage,
     triggerWebhook,
