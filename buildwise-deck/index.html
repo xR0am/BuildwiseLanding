@@ -687,6 +687,24 @@
   .tool-logo iconify-icon { font-size: 1.15rem; display: block; }
   .col-card .tool-logo-row--grid .tool-logo iconify-icon { font-size: 1.3rem; }
 
+  .case-card .case-logos {
+    align-self: start;
+    margin-top: 0.25rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--line);
+    gap: 0.5rem;
+  }
+  .case-card .case-logos .tool-logo {
+    width: 34px;
+    height: 34px;
+    opacity: 0.92;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid rgba(46, 34, 24, 0.06);
+    box-shadow: 0 1px 2px rgba(46, 34, 24, 0.04);
+  }
+  .case-card .case-logos .tool-logo iconify-icon { font-size: 1.3rem; }
+
   /* ── Slide 2: How we operate ─────────────────────────────────── */
   .trait-list {
     list-style: none;
@@ -952,7 +970,7 @@
   .phase-track {
     display: grid;
     grid-template-columns: 0.82fr 1fr 1.28fr;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto auto;
     gap: 0.75rem;
     margin: 1.5rem 0 0.75rem;
     align-items: stretch;
@@ -965,8 +983,8 @@
     padding: 1.15rem;
     display: grid;
     grid-template-rows: subgrid;
-    grid-row: span 2;
-    gap: 0.5rem;
+    grid-row: span 3;
+    gap: 0.65rem;
   }
 
   .phase-block h3 {
@@ -982,8 +1000,22 @@
   .phase-block .phase-scope {
     font-size: 0.88rem;
     color: var(--muted);
-    line-height: 1.5;
+    line-height: 1.55;
     align-self: start;
+  }
+
+  .phase-commitment {
+    font-size: 0.8rem;
+    line-height: 1.45;
+    color: var(--ink);
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--line);
+    align-self: end;
+  }
+
+  .phase-commitment strong {
+    font-weight: 600;
+    color: var(--brown);
   }
 
   .phase-block--1 { border-top: 3px solid var(--amber); }
@@ -1131,8 +1163,6 @@
     line-height: 1;
   }
 
-  .case-logos { align-self: start; }
-
   /* ── Slide 6: Demo ───────────────────────────────────────────── */
   .slide--demo {
     background: var(--surface);
@@ -1207,126 +1237,155 @@
     margin-top: 0.75rem;
   }
 
-  /* ── Slide 8: Org hub ─────────────────────────────────────────── */
-  .org-hub { margin: 1.25rem auto 0; max-width: 920px; }
-
-  .org-band {
+  /* ── Slide 8: Org chart tree ──────────────────────────────────── */
+  .org-tree {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 1rem;
+    margin: 1.15rem auto 0;
+    max-width: 960px;
+    width: 100%;
   }
+
+  .org-tree__tier { display: flex; justify-content: center; width: 100%; }
 
   .org-box {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    padding: 0.7rem 1.25rem;
-    font-size: 0.88rem;
+    padding: 0.65rem 1.25rem;
+    font-size: 0.86rem;
     font-weight: 600;
     text-align: center;
+    line-height: 1.35;
   }
 
-  .org-box--staff {
+  .org-tree__vline {
+    width: 2px;
+    height: 14px;
+    background: var(--line);
+    flex-shrink: 0;
+  }
+
+  .org-operating {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: rgba(212, 165, 116, 0.05);
+    padding: 1rem;
+  }
+
+  .org-operating__grid {
+    display: grid;
+    grid-template-columns: minmax(140px, 28%) 28px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 0.65rem;
+    row-gap: 0;
+    align-items: center;
+  }
+
+  .org-box--team {
+    grid-column: 1;
+    grid-row: 1;
     background: var(--accent-soft);
     border-color: var(--accent-mid);
     color: var(--brown);
     font-weight: 500;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
+    width: 100%;
   }
 
-  .org-vline {
+  .org-operating__bridge {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--amber);
+    font-size: 1.15rem;
+    line-height: 1;
+  }
+
+  .org-box--workforce {
+    grid-column: 3;
+    grid-row: 1;
+    width: 100%;
+    background: var(--surface);
+    border-color: var(--amber);
+    color: var(--amber-deep);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 0.55rem 1rem;
+  }
+
+  .org-agents-panel {
+    grid-column: 3;
+    grid-row: 2;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 0.65rem;
+    grid-template-rows: 22px auto;
+  }
+
+  .org-conn-stem {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    position: relative;
+  }
+
+  .org-conn-stem::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
     width: 2px;
-    height: 16px;
+    height: 9px;
+    background: var(--line);
+    transform: translateX(-50%);
+  }
+
+  .org-conn-stem::after {
+    content: '';
+    position: absolute;
+    top: 9px;
+    left: calc((100% - 3 * 0.65rem) / 8);
+    right: calc((100% - 3 * 0.65rem) / 8);
+    height: 2px;
     background: var(--line);
   }
 
-  .org-split {
-    display: grid;
-    grid-template-columns: 1fr auto 1.4fr;
-    gap: 1rem;
-    align-items: stretch;
+  .org-conn-drop {
+    grid-row: 1;
+    position: relative;
   }
 
-  .org-split__label {
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.65rem;
-  }
-
-  .org-split__team-box {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 1.25rem 1rem;
-    text-align: center;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .org-split__team-box p {
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.5;
-    margin: 0;
-  }
-
-  .org-split__bridge {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.35rem;
-    color: var(--amber);
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0 0.25rem;
-  }
-
-  .org-split__bridge iconify-icon { font-size: 1.25rem; }
-
-  .org-agents-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.65rem;
+  .org-conn-drop::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 9px;
+    width: 2px;
+    height: 13px;
+    background: var(--line);
+    transform: translateX(-50%);
   }
 
   .org-agent-card {
+    grid-row: 2;
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    padding: 0.75rem;
+    padding: 0.75rem 0.65rem 0.7rem;
     text-align: left;
   }
 
   .org-agent-card--first {
     border-color: var(--amber);
     box-shadow: 0 0 0 2px var(--accent-soft);
-    grid-column: 1 / -1;
-  }
-
-  .org-agent-card--dim { opacity: 0.55; }
-
-  .org-agent-card__name {
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 0.2rem;
-    line-height: 1.3;
-  }
-
-  .org-agent-card__desc {
-    font-size: 0.72rem;
-    color: var(--muted);
-    line-height: 1.4;
-    margin-bottom: 0.45rem;
   }
 
   .org-agent-card__tag {
@@ -1335,12 +1394,63 @@
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--amber-deep);
+    margin-bottom: 0.3rem;
+  }
+
+  .org-agent-card__name {
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+    line-height: 1.3;
+  }
+
+  .org-agent-card__desc {
+    font-size: 0.7rem;
+    color: var(--muted);
+    line-height: 1.4;
     margin-bottom: 0.35rem;
   }
 
-  .org-agent-card .tool-logo-row { margin-top: 0; gap: 0.35rem; }
-  .org-agent-card .tool-logo { width: 22px; height: 22px; }
-  .org-agent-card .tool-logo iconify-icon { font-size: 0.95rem; }
+  .org-agent-card__usedby {
+    font-size: 0.66rem;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 0.15rem;
+  }
+
+  .org-agent-card__usedby strong {
+    font-weight: 600;
+    color: var(--brown);
+  }
+
+  .org-agent-card .tool-logo-row {
+    margin-top: 0.45rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--line);
+    gap: 0.45rem;
+  }
+
+  .org-agent-card .tool-logo {
+    width: 34px;
+    height: 34px;
+    opacity: 0.92;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid rgba(46, 34, 24, 0.06);
+    box-shadow: 0 1px 2px rgba(46, 34, 24, 0.04);
+  }
+
+  .org-agent-card .tool-logo iconify-icon { font-size: 1.3rem; display: block; }
+
+  .org-tree__footnote {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-style: italic;
+    text-align: center;
+    margin-top: 0.85rem;
+    width: 100%;
+  }
 
   /* ── Slide 9: Deliverables ───────────────────────────────────── */
   .deliverable-list {
@@ -1545,9 +1655,25 @@
     .ladder-desc, .ladder-badge { grid-column: 2; }
     .ladder-badge { justify-self: start; margin-top: 0.25rem; }
     .ladder-gap { padding-left: 1rem; }
-    .org-split { grid-template-columns: 1fr; }
-    .org-split__bridge { flex-direction: row; padding: 0.5rem 0; }
-    .org-agents-grid { grid-template-columns: 1fr; }
+    .org-operating__grid {
+      grid-template-columns: 1fr;
+      row-gap: 0.5rem;
+    }
+    .org-box--team,
+    .org-operating__bridge,
+    .org-box--workforce,
+    .org-agents-panel {
+      grid-column: 1;
+      grid-row: auto;
+    }
+    .org-operating__bridge { padding: 0.15rem 0; }
+    .org-agents-panel {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+    }
+    .org-conn-stem,
+    .org-conn-drop { display: none; }
+    .org-agent-card { grid-row: auto; }
     .tool-logo-row--grid { grid-template-columns: repeat(5, 1fr); }
   }
 </style>
@@ -1885,19 +2011,22 @@
       <div class="slide-inner">
         <p class="eyebrow">The BuildWise Playbook</p>
         <h1>Phase 1 → Phase 2 → Phase 3</h1>
-        <p class="lead">Three phases. Your pace.</p>
+        <p class="lead">Here's how every engagement works. Three phases, your pace.</p>
         <div class="phase-track">
           <div class="phase-block phase-block--1">
-            <h3>Phase 1 — Audit</h3>
-            <p class="phase-scope">Map workflows, baseline KPIs, agent org chart, Phase 2 proposal.</p>
+            <h3>Phase 1 — Agent Workforce Audit</h3>
+            <p class="phase-scope">We map your current workflows, identify where admin drag is highest, and design your agent org chart.</p>
+            <p class="phase-commitment"><strong>No commitment beyond this point unless Phase 2 is accepted.</strong></p>
           </div>
           <div class="phase-block phase-block--2">
-            <h3>Phase 2 — First agent</h3>
-            <p class="phase-scope">Deploy one agent, 30-day measured pilot.</p>
+            <h3>Phase 2 — Deploy Agent #1</h3>
+            <p class="phase-scope">We deploy one agent for a single, narrow role. 30-day measured pilot.</p>
+            <p class="phase-commitment"><strong>If the ROI isn't there, you cancel.</strong> If it works, you continue.</p>
           </div>
           <div class="phase-block phase-block--3">
             <h3>Phase 3 — Scale</h3>
-            <p class="phase-scope">Add agents one at a time, same playbook.</p>
+            <p class="phase-scope">Add Agent #2, Agent #3. Same playbook, adjacent roles, compounding savings.</p>
+            <p class="phase-commitment"><strong>Same hire model</strong> — no platform lock-in.</p>
           </div>
         </div>
         <div class="phase-connectors">
@@ -1993,66 +2122,66 @@
       <div class="slide-inner">
         <p class="eyebrow">Your Future Agent Workforce</p>
         <h1>Agents your team uses every day</h1>
-        <p class="lead">Consultants and ops staff stay at the centre — agents plug into their workflow as specialised tools, not a replacement tier.</p>
-        <div class="org-hub">
-          <div class="org-band">
+        <p class="lead">Partners, consultants, and ops staff stay in charge — agents plug into their workflow, not beside them.</p>
+        <div class="org-tree">
+          <div class="org-tree__tier">
             <div class="org-box">CEO / Managing Partner</div>
-            <div class="org-vline"></div>
-            <div class="org-box org-box--staff">Consultants &amp; ops staff</div>
           </div>
-          <div class="org-split">
-            <div>
-              <div class="org-split__label">Your team</div>
-              <div class="org-split__team-box">
-                <p>Partners and consultants who run searches, take meetings, and close placements — now with agents handling admin at their direction.</p>
+          <div class="org-tree__vline" aria-hidden="true"></div>
+          <div class="org-operating">
+            <div class="org-operating__grid">
+              <div class="org-box org-box--team">Your team — Partners · Consultants · Ops</div>
+              <span class="org-operating__bridge" aria-hidden="true">↔</span>
+              <div class="org-box org-box--workforce">Agent Workforce (BuildWise-managed)</div>
+              <div class="org-agents-panel">
+                <div class="org-conn-stem" aria-hidden="true"></div>
+                <div class="org-conn-drop" aria-hidden="true"></div>
+                <div class="org-conn-drop" aria-hidden="true"></div>
+                <div class="org-conn-drop" aria-hidden="true"></div>
+                <div class="org-conn-drop" aria-hidden="true"></div>
+                  <article class="org-agent-card org-agent-card--first">
+                    <div class="org-agent-card__tag">Hire first</div>
+                    <div class="org-agent-card__name">CRM Capture Agent</div>
+                    <div class="org-agent-card__desc">Logs meetings and contacts from voice or text</div>
+                    <p class="org-agent-card__usedby"><strong>Used by:</strong> Partners &amp; consultants</p>
+                    <div class="tool-logo-row">
+                      <span class="tool-logo" title="Telegram"><iconify-icon icon="fa6-brands:telegram" style="color:#26A5E4"></iconify-icon></span>
+                      <span class="tool-logo" title="Salesforce"><iconify-icon icon="fa6-brands:salesforce" style="color:#00A1E0"></iconify-icon></span>
+                      <span class="tool-logo" title="Outlook"><iconify-icon icon="mdi:microsoft-outlook" style="color:#0078D4"></iconify-icon></span>
+                    </div>
+                  </article>
+                  <article class="org-agent-card">
+                    <div class="org-agent-card__name">Applicant Triage Agent</div>
+                    <div class="org-agent-card__desc">Filters and ranks inbound CVs and applications</div>
+                    <p class="org-agent-card__usedby"><strong>Used by:</strong> Consultants &amp; ops</p>
+                    <div class="tool-logo-row">
+                      <span class="tool-logo" title="Outlook"><iconify-icon icon="mdi:microsoft-outlook" style="color:#0078D4"></iconify-icon></span>
+                      <span class="tool-logo" title="LinkedIn"><iconify-icon icon="fa6-brands:linkedin-in" style="color:#0077B5"></iconify-icon></span>
+                    </div>
+                  </article>
+                  <article class="org-agent-card">
+                    <div class="org-agent-card__name">Database Match Agent</div>
+                    <div class="org-agent-card__desc">Searches internal DB both ways — candidate ↔ role</div>
+                    <p class="org-agent-card__usedby"><strong>Used by:</strong> Consultants</p>
+                    <div class="tool-logo-row">
+                      <span class="tool-logo" title="Database"><iconify-icon icon="solar:database-linear" style="color:#5C6470"></iconify-icon></span>
+                      <span class="tool-logo" title="Excel"><iconify-icon icon="simple-icons:microsoftexcel" style="color:#217346"></iconify-icon></span>
+                    </div>
+                  </article>
+                  <article class="org-agent-card">
+                    <div class="org-agent-card__name">Pipeline Research Agent</div>
+                    <div class="org-agent-card__desc">Surfaces gaps and suggests search actions</div>
+                    <p class="org-agent-card__usedby"><strong>Used by:</strong> Partners</p>
+                    <div class="tool-logo-row">
+                      <span class="tool-logo" title="Perplexity"><iconify-icon icon="simple-icons:perplexity" style="color:#1FB8CD"></iconify-icon></span>
+                      <span class="tool-logo" title="LinkedIn"><iconify-icon icon="fa6-brands:linkedin-in" style="color:#0077B5"></iconify-icon></span>
+                      <span class="tool-logo" title="Salesforce"><iconify-icon icon="fa6-brands:salesforce" style="color:#00A1E0"></iconify-icon></span>
+                    </div>
+                  </article>
               </div>
             </div>
-            <div class="org-split__bridge">
-              <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
-              uses
-              <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
-            </div>
-            <div>
-              <div class="org-split__label">Agent workforce (BuildWise-managed)</div>
-              <div class="org-agents-grid">
-                <article class="org-agent-card org-agent-card--first">
-                  <div class="org-agent-card__tag">Hire first</div>
-                  <div class="org-agent-card__name">CRM Capture Agent</div>
-                  <div class="org-agent-card__desc">Logs meetings and contacts from voice or text</div>
-                  <div class="tool-logo-row">
-                    <span class="tool-logo"><iconify-icon icon="fa6-brands:telegram" style="color:#26A5E4"></iconify-icon></span>
-                    <span class="tool-logo"><iconify-icon icon="fa6-brands:salesforce" style="color:#00A1E0"></iconify-icon></span>
-                    <span class="tool-logo"><iconify-icon icon="mdi:microsoft-outlook" style="color:#0078D4"></iconify-icon></span>
-                  </div>
-                </article>
-                <article class="org-agent-card">
-                  <div class="org-agent-card__name">Applicant Triage Agent</div>
-                  <div class="org-agent-card__desc">Filters and ranks inbound CVs and applications</div>
-                  <div class="tool-logo-row">
-                    <span class="tool-logo"><iconify-icon icon="mdi:microsoft-outlook" style="color:#0078D4"></iconify-icon></span>
-                    <span class="tool-logo"><iconify-icon icon="fa6-brands:linkedin-in" style="color:#0077B5"></iconify-icon></span>
-                  </div>
-                </article>
-                <article class="org-agent-card">
-                  <div class="org-agent-card__name">Database Match Agent</div>
-                  <div class="org-agent-card__desc">Searches internal DB both ways — candidate ↔ role</div>
-                  <div class="tool-logo-row">
-                    <span class="tool-logo"><iconify-icon icon="solar:database-linear" style="color:#5C6470"></iconify-icon></span>
-                    <span class="tool-logo"><iconify-icon icon="simple-icons:microsoftexcel" style="color:#217346"></iconify-icon></span>
-                  </div>
-                </article>
-                <article class="org-agent-card org-agent-card--dim">
-                  <div class="org-agent-card__name">Pipeline Research Agent</div>
-                  <div class="org-agent-card__desc">Surfaces gaps and suggests search actions</div>
-                  <div class="tool-logo-row">
-                    <span class="tool-logo"><iconify-icon icon="simple-icons:perplexity" style="color:#1FB8CD"></iconify-icon></span>
-                    <span class="tool-logo"><iconify-icon icon="fa6-brands:linkedin-in" style="color:#0077B5"></iconify-icon></span>
-                    <span class="tool-logo"><iconify-icon icon="fa6-brands:salesforce" style="color:#00A1E0"></iconify-icon></span>
-                  </div>
-                </article>
-              </div>
-            </div>
           </div>
+          <p class="org-tree__footnote">Phase 1 delivers your firm's agent org chart — one hire at a time.</p>
         </div>
       </div>
     </section>
