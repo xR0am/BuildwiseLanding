@@ -1278,10 +1278,9 @@
   .org-operating__grid {
     display: grid;
     grid-template-columns: minmax(140px, 28%) 28px minmax(0, 1fr);
-    grid-template-rows: auto auto;
+    grid-template-rows: auto;
     column-gap: 0.65rem;
-    row-gap: 0;
-    align-items: center;
+    align-items: start;
   }
 
   .org-box--team {
@@ -1304,11 +1303,20 @@
     color: var(--amber);
     font-size: 1.15rem;
     line-height: 1;
+    margin-top: 0.55rem;
+  }
+
+  .org-workforce-column {
+    grid-column: 3;
+    grid-row: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    --org-agent-gap: 0.65rem;
+    overflow: visible;
   }
 
   .org-box--workforce {
-    grid-column: 3;
-    grid-row: 1;
     width: 100%;
     background: var(--surface);
     border-color: var(--amber);
@@ -1319,41 +1327,39 @@
     text-transform: uppercase;
     font-weight: 600;
     padding: 0.55rem 1rem;
-  }
-
-  .org-agents-panel {
-    grid-column: 3;
-    grid-row: 2;
-    min-width: 0;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: 0.65rem;
-    grid-template-rows: 22px auto;
-  }
-
-  .org-conn-stem {
-    grid-column: 1 / -1;
-    grid-row: 1;
     position: relative;
   }
 
-  .org-conn-stem::before {
+  .org-box--workforce::after {
     content: '';
     position: absolute;
     left: 50%;
-    top: 0;
+    bottom: 0;
     width: 2px;
-    height: 9px;
+    height: 8px;
     background: var(--line);
-    transform: translateX(-50%);
+    transform: translate(-50%, 100%);
   }
 
-  .org-conn-stem::after {
+  .org-agents-branch {
+    min-width: 0;
+    margin-top: 8px;
+  }
+
+  .org-agents-connectors {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: var(--org-agent-gap);
+    height: 10px;
+    position: relative;
+  }
+
+  .org-agents-connectors::after {
     content: '';
     position: absolute;
-    top: 9px;
-    left: calc((100% - 3 * 0.65rem) / 8);
-    right: calc((100% - 3 * 0.65rem) / 8);
+    top: 0;
+    left: calc((100% - 3 * var(--org-agent-gap)) / 8);
+    right: calc((100% - 3 * var(--org-agent-gap)) / 8);
     height: 2px;
     background: var(--line);
   }
@@ -1363,19 +1369,29 @@
     position: relative;
   }
 
+  .org-conn-drop:nth-child(1) { grid-column: 1; }
+  .org-conn-drop:nth-child(2) { grid-column: 2; }
+  .org-conn-drop:nth-child(3) { grid-column: 3; }
+  .org-conn-drop:nth-child(4) { grid-column: 4; }
+
   .org-conn-drop::before {
     content: '';
     position: absolute;
     left: 50%;
-    top: 9px;
+    top: 0;
     width: 2px;
-    height: 13px;
+    height: 10px;
     background: var(--line);
     transform: translateX(-50%);
   }
 
+  .org-agents-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: var(--org-agent-gap);
+  }
+
   .org-agent-card {
-    grid-row: 2;
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
@@ -1661,19 +1677,13 @@
     }
     .org-box--team,
     .org-operating__bridge,
-    .org-box--workforce,
-    .org-agents-panel {
+    .org-workforce-column {
       grid-column: 1;
       grid-row: auto;
     }
-    .org-operating__bridge { padding: 0.15rem 0; }
-    .org-agents-panel {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto;
-    }
-    .org-conn-stem,
-    .org-conn-drop { display: none; }
-    .org-agent-card { grid-row: auto; }
+    .org-operating__bridge { padding: 0.15rem 0; margin-top: 0; }
+    .org-agents-connectors { display: none; }
+    .org-agents-row { grid-template-columns: 1fr 1fr; }
     .tool-logo-row--grid { grid-template-columns: repeat(5, 1fr); }
   }
 </style>
@@ -2132,14 +2142,17 @@
             <div class="org-operating__grid">
               <div class="org-box org-box--team">Your team — Partners · Consultants · Ops</div>
               <span class="org-operating__bridge" aria-hidden="true">↔</span>
-              <div class="org-box org-box--workforce">Agent Workforce (BuildWise-managed)</div>
-              <div class="org-agents-panel">
-                <div class="org-conn-stem" aria-hidden="true"></div>
-                <div class="org-conn-drop" aria-hidden="true"></div>
-                <div class="org-conn-drop" aria-hidden="true"></div>
-                <div class="org-conn-drop" aria-hidden="true"></div>
-                <div class="org-conn-drop" aria-hidden="true"></div>
-                  <article class="org-agent-card org-agent-card--first">
+              <div class="org-workforce-column">
+                <div class="org-box org-box--workforce">Agent Workforce (BuildWise-managed)</div>
+                <div class="org-agents-branch">
+                  <div class="org-agents-connectors" aria-hidden="true">
+                    <div class="org-conn-drop"></div>
+                    <div class="org-conn-drop"></div>
+                    <div class="org-conn-drop"></div>
+                    <div class="org-conn-drop"></div>
+                  </div>
+                  <div class="org-agents-row">
+                    <article class="org-agent-card org-agent-card--first">
                     <div class="org-agent-card__tag">Hire first</div>
                     <div class="org-agent-card__name">CRM Capture Agent</div>
                     <div class="org-agent-card__desc">Logs meetings and contacts from voice or text</div>
@@ -2178,6 +2191,8 @@
                       <span class="tool-logo" title="Salesforce"><iconify-icon icon="fa6-brands:salesforce" style="color:#00A1E0"></iconify-icon></span>
                     </div>
                   </article>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
