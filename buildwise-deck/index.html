@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BuildWise Studios — Sales Deck</title>
+<title>BuildWise — Sales Deck</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 <style>
   /* ── Design tokens ───────────────────────────────────────────── */
   :root {
@@ -252,6 +253,440 @@
     opacity: 0.85;
   }
 
+  .slide--intro .slide-inner {
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr minmax(320px, 32rem);
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: center;
+    text-align: center;
+  }
+
+  .slide--intro.slide--title { text-align: center; }
+
+  .slide--intro .slide-inner > .intro-copy {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    padding: 1rem 0;
+  }
+
+  .slide--intro h1 {
+    font-size: clamp(3.12rem, 6.5vw, 4.875rem);
+  }
+
+  .slide--intro .tagline {
+    font-size: clamp(1.365rem, 2.34vw, 1.625rem);
+  }
+
+  .slide--intro .prospect-line {
+    font-size: 1.014rem;
+  }
+
+  .slide--intro .tagline--closing {
+    margin-top: 2rem;
+    font-size: 1.3rem;
+  }
+
+  /* ── Hero chat widget (matches IntelligenceAgents landing) ───── */
+  .hero-chat {
+    position: relative;
+    width: 100%;
+    max-width: 32rem;
+    margin: 0 auto;
+    flex-shrink: 0;
+  }
+  .hero-chat__wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-chat__glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top right, rgba(212, 165, 116, 0.2), transparent, rgba(212, 165, 116, 0.1));
+    border-radius: 999px;
+    filter: blur(48px);
+    transform: scale(1.25);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .hero-chat__card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--line);
+    box-shadow: 0 25px 50px -12px rgba(46, 34, 24, 0.18);
+  }
+  .hero-chat__scene {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .hero-chat__scene--chat { background: #F0F2F5; }
+  .hero-chat__scene.is-visible { opacity: 1; pointer-events: auto; }
+  .hero-chat__pill {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    font-weight: 500;
+    color: #94a3b8;
+    background: rgba(255,255,255,0.8);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px 12px;
+    white-space: nowrap;
+    z-index: 20;
+  }
+  .hero-chat__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 1rem 0.75rem;
+    margin-top: 2rem;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    z-index: 10;
+  }
+  .hero-chat__contact { display: flex; align-items: center; gap: 12px; }
+  .hero-chat__avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; flex-shrink: 0;
+  }
+  .hero-chat__avatar--human { background: #e2e8f0; color: #64748b; }
+  .hero-chat__avatar--agent { background: var(--amber); color: #fff; }
+  .hero-chat__avatar--agent iconify-icon { font-size: 14px; }
+  .hero-chat__name { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.2; text-align: left; }
+  .hero-chat__status { font-size: 10px; color: #64748b; text-align: left; }
+  .hero-chat__status--online { color: var(--amber-deep); font-weight: 500; }
+  .hero-chat__icons { display: flex; gap: 16px; color: var(--amber); opacity: 0.5; font-size: 18px; }
+  .hero-chat__body {
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-bottom: 3rem;
+    min-height: 0;
+    overflow: hidden;
+  }
+  .hero-chat__bubble-wrap { display: flex; flex-direction: column; opacity: 0; }
+  .hero-chat__scene.is-visible .hero-chat__bubble-wrap { animation: chatBubbleIn 0.5s ease forwards; }
+  .hero-chat__bubble {
+    max-width: 85%;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--ink);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  }
+  .hero-chat__bubble-wrap--out { align-items: flex-end; }
+  .hero-chat__bubble-wrap--in { align-items: flex-start; }
+  .hero-chat__bubble--out { background: #E7FFDB; border: 1px solid #dcf8c6; }
+  .hero-chat__bubble--in { background: #fff; border: 1px solid var(--line); }
+  .hero-chat__meta {
+    display: flex; justify-content: flex-end; align-items: center; gap: 4px;
+    margin-top: 4px; font-size: 9px; color: rgba(100, 116, 139, 0.8);
+  }
+  .hero-chat__meta iconify-icon { font-size: 10px; color: #94a3b8; }
+  .hero-chat__meta iconify-icon.hero-chat__check--amber { color: var(--amber-deep); }
+  .hero-chat__stamp-wrap { align-self: center; opacity: 0; }
+  .hero-chat__scene.is-visible .hero-chat__stamp-wrap { animation: chatFadeIn 0.5s ease forwards; }
+  .hero-chat__stamp {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.6);
+    color: #94a3b8;
+    text-align: center;
+    line-height: 1.35;
+  }
+  .hero-chat__stamp--success {
+    background: var(--canvas);
+    color: var(--amber-deep);
+    border: 1px solid rgba(212, 165, 116, 0.35);
+  }
+  .hero-chat__scene[data-scene="human"].is-visible .hero-chat__body .hero-chat__bubble-wrap:nth-child(1) { animation-delay: 0.2s; }
+  .hero-chat__scene[data-scene="human"].is-visible .hero-chat__body .hero-chat__bubble-wrap:nth-child(2) { animation-delay: 1.2s; }
+  .hero-chat__scene[data-scene="human"].is-visible .hero-chat__stamp-wrap { animation-delay: 2.2s; }
+  .hero-chat__scene[data-scene="ai-response"].is-visible .hero-chat__body .hero-chat__bubble-wrap:nth-child(1) { animation-delay: 0.2s; }
+  .hero-chat__scene[data-scene="ai-response"].is-visible .hero-chat__body .hero-chat__bubble-wrap:nth-child(2) { animation-delay: 0.5s; }
+  .hero-chat__scene[data-scene="ai-response"].is-visible .hero-chat__stamp-wrap { animation-delay: 1.2s; }
+  @keyframes chatBubbleIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes chatFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Pipeline scene */
+  .hero-chat__scene--pipeline { background: #fff; padding: 1.5rem; }
+  .hero-pipeline__top {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 2rem; position: relative; z-index: 20;
+  }
+  .hero-pipeline__status {
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--amber-deep);
+  }
+  .hero-pipeline__dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--amber);
+    animation: pulseDot 1.5s ease-in-out infinite;
+  }
+  @keyframes pulseDot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .hero-pipeline__search {
+    display: flex; align-items: center; gap: 8px;
+    background: #f8fafc; border: 1px solid #f1f5f9;
+    border-radius: 8px; padding: 6px 12px;
+    font-size: 10px; font-weight: 800; color: var(--ink);
+    opacity: 0; transform: translateX(20px);
+  }
+  .hero-chat__scene[data-scene="agent"].is-visible .hero-pipeline__search {
+    animation: slideInSearch 0.5s ease 0.1s forwards;
+  }
+  @keyframes slideInSearch { to { opacity: 1; transform: translateX(0); } }
+  .hero-pipeline__stage { flex: 1; position: relative; min-height: 0; }
+  .hero-pipeline__svg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none; overflow: visible;
+  }
+  .hero-pipeline__path {
+    fill: none; stroke: var(--amber); stroke-width: 1.5; stroke-linecap: round;
+    stroke-dasharray: 200; stroke-dashoffset: 200; opacity: 0.1;
+  }
+  .hero-chat__scene[data-scene="agent"].is-visible .hero-pipeline__path {
+    animation: drawPipelinePath 0.9s ease-in-out forwards;
+    animation-delay: var(--path-delay, 0s);
+  }
+  @keyframes drawPipelinePath {
+    to { stroke-dashoffset: 0; opacity: 0.3; }
+  }
+  .hero-pipeline__node {
+    position: absolute; display: flex; flex-direction: column; align-items: center;
+    opacity: 0; transform: translate(-50%, -50%) scale(0);
+  }
+  .hero-pipeline__node[style*="right:"] {
+    transform: translate(50%, -50%) scale(0);
+  }
+  .hero-chat__scene[data-scene="agent"].is-visible .hero-pipeline__node {
+    animation: popNode 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: var(--node-delay, 0s);
+  }
+  .hero-chat__scene[data-scene="agent"].is-visible .hero-pipeline__node[style*="right:"] {
+    animation-name: popNodeRight;
+  }
+  @keyframes popNode { to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+  @keyframes popNodeRight { to { opacity: 1; transform: translate(50%, -50%) scale(1); } }
+  .hero-pipeline__node-box {
+    width: 48px; height: 48px; background: #fff; border-radius: 12px;
+    border: 1px solid #f1f5f9; box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-pipeline__node-box iconify-icon { font-size: 20px; }
+  .hero-pipeline__node-box img { width: 24px; height: 24px; object-fit: contain; }
+  .hero-pipeline__node-label {
+    font-size: 8px; font-weight: 800; color: rgba(26,26,26,0.4);
+    text-transform: uppercase; letter-spacing: 0.12em; margin-top: 6px;
+  }
+  .hero-pipeline__brain {
+    position: absolute; top: 53%; left: 50%;
+    transform: translate(-50%, -50%) scale(0); z-index: 30;
+    width: 80px; height: 80px; border-radius: 16px;
+    background: linear-gradient(to bottom right, #1A1A1A, #2D1B10);
+    border: 1px solid rgba(212, 165, 116, 0.3);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    overflow: hidden; opacity: 0;
+  }
+  .hero-pipeline__brain-glow {
+    position: absolute; inset: -8px; opacity: 0.2;
+    background: radial-gradient(circle at 50% 50%, var(--amber) 0%, transparent 70%);
+    animation: spinGlow 10s linear infinite;
+  }
+  @keyframes spinGlow { to { transform: rotate(360deg); } }
+  .hero-pipeline__brain iconify-icon { font-size: 30px; color: var(--amber); position: relative; z-index: 1; }
+  .hero-pipeline__brain span {
+    font-size: 7px; font-weight: 700; color: var(--amber);
+    letter-spacing: 0.2em; margin-top: 4px; position: relative; z-index: 1;
+  }
+  .hero-chat__scene[data-scene="agent"].is-visible .hero-pipeline__brain {
+    animation: popBrain 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1.8s forwards;
+  }
+  @keyframes popBrain { to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+  .hero-pipeline__writing {
+    position: absolute; top: -24px; left: 50%; transform: translateX(-50%);
+    background: #1A1A1A; color: var(--amber); font-size: 8px; font-weight: 700;
+    padding: 2px 6px; border-radius: 4px; white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); opacity: 0;
+  }
+  .hero-chat__scene[data-scene="agent"].is-visible .hero-pipeline__writing {
+    animation: chatFadeIn 0.4s ease 3.2s forwards;
+  }
+  .hero-pipeline__confirm {
+    position: absolute; bottom: -8px; right: 0; width: 160px;
+    background: #E7FFDB; border: 1px solid #dcf8c6; padding: 10px;
+    border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 40;
+    opacity: 0; transform: scale(0.8) translateX(20px);
+  }
+  .hero-pipeline__confirm p {
+    font-size: 10px; font-weight: 700; color: #2D1B10; line-height: 1.35; margin: 0;
+  }
+  .hero-pipeline__confirm .hero-chat__meta { margin-top: 4px; }
+  .hero-chat__scene[data-scene="agent"].is-visible .hero-pipeline__confirm {
+    animation: confirmPop 0.5s ease 3.8s forwards;
+  }
+  @keyframes confirmPop { to { opacity: 1; transform: scale(1) translateX(0); } }
+
+  /* Constellation scene */
+  .hero-chat__scene--constellation {
+    background: #fff; align-items: center; justify-content: center; overflow: hidden;
+  }
+  .hero-constellation__stage {
+    position: relative; width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    transform: translateY(-40px);
+  }
+  .hero-constellation__lines {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+  }
+  .hero-constellation__line {
+    stroke: var(--amber); stroke-width: 1; stroke-dasharray: 4 4; opacity: 0;
+  }
+  .hero-chat__scene[data-scene="constellation"].is-visible .hero-constellation__line {
+    animation: chatFadeIn 0.4s ease forwards;
+    animation-delay: calc(0.2s + var(--line-i, 0) * 0.1s);
+  }
+  .hero-constellation__core {
+    position: relative; z-index: 20;
+    width: 80px; height: 80px; border-radius: 16px;
+    background: linear-gradient(to bottom right, #1A1A1A, #2D1B10);
+    border: 1px solid rgba(212, 165, 116, 0.3);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; animation: corePulse 2s ease-in-out infinite;
+  }
+  @keyframes corePulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+  .hero-constellation__core-glow {
+    position: absolute; inset: -8px; opacity: 0.3;
+    background: radial-gradient(circle at 50% 50%, var(--amber) 0%, transparent 70%);
+    animation: spinGlow 6s linear infinite;
+  }
+  .hero-constellation__core iconify-icon { font-size: 36px; color: var(--amber); position: relative; z-index: 1; }
+  .hero-constellation__app {
+    position: absolute; left: 50%; top: 50%;
+    width: 48px; height: 48px; margin: -24px 0 0 -24px;
+    background: #fff; border-radius: 12px; border: 1px solid #f1f5f9;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: translate(var(--app-x, 0), var(--app-y, 0)) scale(0);
+  }
+  .hero-constellation__app iconify-icon { font-size: 20px; }
+  .hero-constellation__app img { width: 24px; height: 24px; object-fit: contain; }
+  .hero-chat__scene[data-scene="constellation"].is-visible .hero-constellation__app {
+    animation: popOrbit 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: calc(0.4s + var(--app-i, 0) * 0.1s);
+  }
+  @keyframes popOrbit {
+    to { opacity: 1; transform: translate(var(--app-x, 0), var(--app-y, 0)) scale(1); }
+  }
+  .hero-constellation__signal {
+    position: absolute; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--amber);
+    animation: signalTravel 1.5s linear infinite;
+    animation-delay: calc(var(--app-i, 0) * 0.2s);
+  }
+  @keyframes signalTravel {
+    0% { transform: translate(calc(-1 * var(--app-x, 0)), calc(-1 * var(--app-y, 0))); opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translate(0, 0); opacity: 0; }
+  }
+  .hero-constellation__tagline {
+    position: absolute; bottom: 2.5rem; left: 0; right: 0; text-align: center; padding: 0 1.5rem;
+    opacity: 0; transform: translateY(15px);
+  }
+  .hero-chat__scene[data-scene="constellation"].is-visible .hero-constellation__tagline {
+    animation: taglineIn 0.5s ease 1.2s forwards;
+  }
+  @keyframes taglineIn { to { opacity: 1; transform: translateY(0); } }
+  .hero-constellation__tagline h4 {
+    font-family: var(--font-display); font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 700; color: var(--ink); letter-spacing: -0.02em;
+    text-transform: uppercase; margin: 0;
+  }
+  .hero-constellation__tagline p {
+    font-size: 10px; font-weight: 700; color: var(--amber-deep);
+    text-transform: uppercase; letter-spacing: 0.3em; margin: 6px 0 0;
+  }
+
+  /* Hero placement: slide 1 grid vs slide 2 accent */
+  .hero-chat--hidden { display: none !important; }
+
+  /* ── Tool logos ──────────────────────────────────────────────── */
+  .tool-logo-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.65rem;
+    align-items: center;
+  }
+  .tool-logo-row--grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.55rem 0.4rem;
+    justify-items: center;
+    align-items: center;
+  }
+  .col-card .tool-logo-row--grid {
+    margin-top: 1rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--line);
+  }
+  .tool-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    opacity: 0.55;
+  }
+  .col-card .tool-logo-row--grid .tool-logo {
+    width: 34px;
+    height: 34px;
+    opacity: 0.92;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid rgba(46, 34, 24, 0.06);
+    box-shadow: 0 1px 2px rgba(46, 34, 24, 0.04);
+  }
+  .tool-logo iconify-icon { font-size: 1.15rem; display: block; }
+  .col-card .tool-logo-row--grid .tool-logo iconify-icon { font-size: 1.3rem; }
+
   /* ── Slide 2: How we operate ─────────────────────────────────── */
   .trait-list {
     list-style: none;
@@ -355,84 +790,169 @@
 
   .ladder-step {
     display: grid;
-    grid-template-columns: 48px 130px 1fr;
+    grid-template-columns: 48px 130px 1fr auto;
     align-items: center;
     gap: 1rem;
     padding: 0.85rem 1.25rem;
     border-bottom: 1px solid var(--line);
-    position: relative;
+    transition: background 0.2s ease;
   }
 
   .ladder-step:last-child { border-bottom: none; }
 
-  .ladder-step::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 0;
-    background: var(--accent-soft);
-    transition: width 0.3s ease;
+  /* Level 1 — current state (cool grey, “you are here”) */
+  .ladder-step--level1 {
+    background: rgba(92, 100, 112, 0.08);
+    border-left: 4px dashed rgba(92, 100, 112, 0.45);
+  }
+  .ladder-step--level1 .ladder-label { color: var(--muted); font-weight: 600; }
+  .ladder-step--level1 .ladder-rung { color: var(--muted); font-weight: 600; }
+  .ladder-step--level1 .ladder-desc { color: var(--muted); }
+
+  /* Level 2 — next step (neutral) */
+  .ladder-step--level2 {
+    background: rgba(92, 100, 112, 0.04);
+    border-left: 4px solid rgba(92, 100, 112, 0.2);
+  }
+  .ladder-step--level2 .ladder-label { color: var(--muted); }
+
+  /* Level 3 — BuildWise deploy zone */
+  .ladder-step--level3 {
+    background: rgba(212, 165, 116, 0.14);
+    border-left: 4px solid var(--amber);
+  }
+  .ladder-step--level3 .ladder-label { color: var(--amber-deep); }
+  .ladder-step--level3 .ladder-rung { color: var(--amber-deep); font-weight: 600; }
+
+  /* Level 4 — destination (dark premium) */
+  .ladder-step--level4 {
+    background: linear-gradient(135deg, #2E2218 0%, #3d2e22 55%, #2E2218 100%);
+    border-left: 4px solid var(--amber);
+    box-shadow: inset 0 1px 0 rgba(212, 165, 116, 0.12);
+  }
+  .ladder-step--level4 .ladder-label {
+    color: var(--canvas);
+    font-weight: 700;
+  }
+  .ladder-step--level4 .ladder-rung {
+    color: var(--amber);
+    font-weight: 600;
+  }
+  .ladder-step--level4 .ladder-desc {
+    color: rgba(247, 245, 240, 0.72);
   }
 
-  .ladder-step--muted { opacity: 0.55; }
-  .ladder-step--muted::after { width: 12%; background: rgba(92, 100, 112, 0.06); }
+  /* Gap connector between Copilot → Autopilot */
+  .ladder-gap {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.45rem 1.25rem 0.45rem 1.75rem;
+    background: repeating-linear-gradient(
+      -45deg,
+      rgba(212, 165, 116, 0.04),
+      rgba(212, 165, 116, 0.04) 4px,
+      rgba(212, 165, 116, 0.08) 4px,
+      rgba(212, 165, 116, 0.08) 8px
+    );
+    border-top: 1px dashed rgba(212, 165, 116, 0.35);
+    border-bottom: 1px dashed rgba(212, 165, 116, 0.35);
+  }
+  .ladder-gap__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--amber);
+    color: var(--amber-deep);
+    font-size: 0.85rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .ladder-gap__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+  .ladder-gap__label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--amber-deep);
+  }
+  .ladder-gap__sub {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-style: italic;
+  }
 
-  .ladder-step--accent::after { width: 28%; background: var(--accent-soft); }
-  .ladder-step--accent .ladder-label { color: var(--amber-deep); }
-
-  .ladder-step--future::after { width: 40%; background: var(--accent-mid); }
+  .ladder-badge {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--brown);
+    background: var(--surface);
+    border: 1px solid var(--amber);
+    border-radius: 999px;
+    padding: 0.25rem 0.55rem;
+    white-space: nowrap;
+  }
+  .ladder-badge--current {
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px dashed rgba(92, 100, 112, 0.45);
+    font-weight: 500;
+  }
+  .ladder-badge--deploy {
+    color: var(--amber-deep);
+    background: rgba(255, 255, 255, 0.9);
+    border-color: var(--amber-deep);
+    font-weight: 600;
+  }
+  .ladder-badge--destination {
+    color: var(--amber);
+    background: rgba(26, 26, 26, 0.35);
+    border: 1px solid var(--amber);
+    font-weight: 600;
+  }
 
   .ladder-rung {
     font-family: var(--font-mono);
     font-size: 0.7rem;
     font-weight: 500;
     color: var(--muted);
-    position: relative;
-    z-index: 1;
   }
 
   .ladder-label {
     font-weight: 600;
     font-size: 0.95rem;
     color: var(--ink);
-    position: relative;
-    z-index: 1;
   }
 
   .ladder-desc {
     font-size: 0.86rem;
     color: var(--muted);
-    position: relative;
-    z-index: 1;
   }
 
-  .ladder-gap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    padding: 0.65rem 1rem;
-    background: var(--accent-soft);
-    border-top: 1px dashed var(--amber);
-    border-bottom: 1px dashed var(--amber);
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--amber-deep);
+  .ladder-note {
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-top: 0.75rem;
+    font-style: italic;
   }
-
-  .ladder-gap svg { flex-shrink: 0; color: var(--amber); }
+  .ladder-note strong { color: var(--amber-deep); font-style: normal; font-weight: 600; }
 
   /* ── Slide 4: Phases ─────────────────────────────────────────── */
   .phase-track {
     display: grid;
     grid-template-columns: 0.82fr 1fr 1.28fr;
-    /* Shared rows: title | scope (flex) | outcome | commit */
-    grid-template-rows: auto 1fr auto auto;
+    grid-template-rows: auto auto;
     gap: 0.75rem;
     margin: 1.5rem 0 0.75rem;
     align-items: stretch;
@@ -445,7 +965,7 @@
     padding: 1.15rem;
     display: grid;
     grid-template-rows: subgrid;
-    grid-row: span 4;
+    grid-row: span 2;
     gap: 0.5rem;
   }
 
@@ -456,7 +976,6 @@
     text-transform: uppercase;
     color: var(--amber-deep);
     line-height: 1.35;
-    min-height: 2.7em;
     align-self: start;
   }
 
@@ -464,23 +983,6 @@
     font-size: 0.88rem;
     color: var(--muted);
     line-height: 1.5;
-    align-self: start;
-  }
-
-  .phase-block .phase-outcome {
-    font-size: 0.8rem;
-    color: var(--muted);
-    line-height: 1.45;
-    padding-top: 0.5rem;
-    border-top: 1px solid var(--line);
-    align-self: start;
-  }
-
-  .phase-block .phase-commit {
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--brown);
-    line-height: 1.4;
     align-self: start;
   }
 
@@ -527,7 +1029,6 @@
   .cases {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* Shared rows: title | meta | pain-label | pain | solution-label | solution | flow-label | flow | status */
     grid-template-rows: auto auto auto 1fr auto auto auto auto auto;
     gap: 1.25rem;
     margin-top: 1.25rem;
@@ -592,21 +1093,45 @@
   }
 
   .case-flow {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: var(--muted);
     line-height: 1.5;
     align-self: start;
   }
 
-  .case-status {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 500;
-    color: var(--amber-deep);
+  .case-flow-bidir {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
     align-self: start;
-    padding-top: 0.35rem;
-    border-top: 1px solid var(--line);
   }
+
+  .case-flow-item {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.45;
+    padding-left: 0.65rem;
+    border-left: 2px solid var(--amber);
+  }
+
+  .case-flow-item strong {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--amber-deep);
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+
+  .case-flow-arrow {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--amber);
+    line-height: 1;
+  }
+
+  .case-logos { align-self: start; }
 
   /* ── Slide 6: Demo ───────────────────────────────────────────── */
   .slide--demo {
@@ -682,16 +1207,14 @@
     margin-top: 0.75rem;
   }
 
-  /* ── Slide 8: Org chart ──────────────────────────────────────── */
-  .org-chart {
-    margin: 1.5rem auto 1rem;
-    max-width: 820px;
-  }
+  /* ── Slide 8: Org hub ─────────────────────────────────────────── */
+  .org-hub { margin: 1.25rem auto 0; max-width: 920px; }
 
-  .org-tier {
+  .org-band {
     display: flex;
-    justify-content: center;
-    position: relative;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
   }
 
   .org-box {
@@ -704,109 +1227,120 @@
     text-align: center;
   }
 
-  .org-box--ceo { min-width: 220px; }
-
-  .org-box--workforce {
+  .org-box--staff {
     background: var(--accent-soft);
     border-color: var(--accent-mid);
     color: var(--brown);
     font-weight: 500;
-    font-size: 0.82rem;
+    font-size: 0.85rem;
   }
 
   .org-vline {
     width: 2px;
-    height: 20px;
-    background: var(--line);
-    margin: 0 auto;
-  }
-
-  .org-hline-wrap {
-    position: relative;
-    height: 20px;
-    margin: 0 10%;
-  }
-
-  .org-hline {
-    position: absolute;
-    top: 0;
-    left: 12.5%;
-    right: 12.5%;
-    height: 2px;
+    height: 16px;
     background: var(--line);
   }
 
-  .org-hline-stems {
+  .org-split {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    height: 100%;
+    grid-template-columns: 1fr auto 1.4fr;
+    gap: 1rem;
+    align-items: stretch;
   }
 
-  .org-hline-stems span {
-    display: flex;
-    justify-content: center;
+  .org-split__label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.65rem;
   }
 
-  .org-hline-stems span::before {
-    content: '';
-    width: 2px;
-    height: 20px;
-    background: var(--line);
-  }
-
-  .org-agents {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.75rem;
-  }
-
-  .org-agent {
+  .org-split__team-box {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    padding: 0.85rem 0.65rem;
+    padding: 1.25rem 1rem;
     text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
-  .org-agent--first {
-    border-color: var(--amber);
-    box-shadow: 0 0 0 2px var(--accent-soft);
+  .org-split__team-box p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.5;
+    margin: 0;
   }
 
-  .org-agent--dim { opacity: 0.55; }
-
-  .org-agent .agent-num {
+  .org-split__bridge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    color: var(--amber);
     font-family: var(--font-mono);
     font-size: 0.62rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--muted);
+    padding: 0 0.25rem;
   }
 
-  .org-agent .agent-role {
-    font-size: 0.8rem;
+  .org-split__bridge iconify-icon { font-size: 1.25rem; }
+
+  .org-agents-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+  }
+
+  .org-agent-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.75rem;
+    text-align: left;
+  }
+
+  .org-agent-card--first {
+    border-color: var(--amber);
+    box-shadow: 0 0 0 2px var(--accent-soft);
+    grid-column: 1 / -1;
+  }
+
+  .org-agent-card--dim { opacity: 0.55; }
+
+  .org-agent-card__name {
+    font-size: 0.78rem;
     font-weight: 600;
     color: var(--ink);
-    margin: 0.25rem 0;
+    margin-bottom: 0.2rem;
     line-height: 1.3;
   }
 
-  .org-agent .agent-tag {
+  .org-agent-card__desc {
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.4;
+    margin-bottom: 0.45rem;
+  }
+
+  .org-agent-card__tag {
     font-family: var(--font-mono);
-    font-size: 0.62rem;
-    font-weight: 500;
+    font-size: 0.58rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--amber-deep);
+    margin-bottom: 0.35rem;
   }
 
-  .org-caption {
-    text-align: center;
-    font-size: 0.88rem;
-    color: var(--muted);
-    max-width: 52ch;
-    margin: 0.75rem auto 0;
-  }
+  .org-agent-card .tool-logo-row { margin-top: 0; gap: 0.35rem; }
+  .org-agent-card .tool-logo { width: 22px; height: 22px; }
+  .org-agent-card .tool-logo iconify-icon { font-size: 0.95rem; }
 
   /* ── Slide 9: Deliverables ───────────────────────────────────── */
   .deliverable-list {
@@ -961,6 +1495,11 @@
   .slide.active .slide-inner > *:nth-child(6) { animation-delay: 0.29s; }
   .slide.active .slide-inner > *:nth-child(7) { animation-delay: 0.34s; }
 
+  .slide.active .slide-inner > .hero-chat {
+    animation: none;
+    opacity: 1;
+  }
+
   @keyframes reveal {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -971,12 +1510,23 @@
     .slide.active .slide-inner > * { animation: none; opacity: 1; }
     .staffing-rail__fill { transition: none; }
     .nav-dot { transition: none; }
+    .hero-chat__scene { transition: none; }
+    .hero-chat__bubble-wrap, .hero-chat__stamp-wrap,
+    .hero-pipeline__path, .hero-pipeline__node, .hero-pipeline__brain,
+    .hero-pipeline__search, .hero-pipeline__writing, .hero-pipeline__confirm,
+    .hero-constellation__line, .hero-constellation__app, .hero-constellation__tagline {
+      animation: none !important; opacity: 1 !important; transform: none !important;
+    }
+    .hero-constellation__app { transform: translate(var(--app-x, 0), var(--app-y, 0)) !important; }
+    .hero-pipeline__brain { transform: translate(-50%, -50%) !important; }
   }
 
   /* ── Responsive ──────────────────────────────────────────────── */
   @media (max-width: 768px) {
     .slide { padding: 3rem 1.25rem 5rem 1.75rem; }
     .wordmark { left: 1.75rem; top: 1.25rem; }
+    .slide--intro .slide-inner { grid-template-columns: 1fr; }
+    .hero-chat { display: none !important; }
     .three-col, .cases, .phase-track, .phase-connectors, .offer-meta { grid-template-columns: 1fr; }
     .phase-track { grid-template-rows: none; }
     .phase-block {
@@ -984,7 +1534,6 @@
       flex-direction: column;
       grid-row: auto;
     }
-    .phase-block h3 { min-height: 0; }
     .cases { grid-template-rows: none; }
     .case-card {
       display: flex;
@@ -993,10 +1542,13 @@
     }
     .case-section-label { align-self: start; padding-bottom: 0; }
     .ladder-step { grid-template-columns: 36px 1fr; }
-    .ladder-desc { grid-column: 2; }
-    .org-agents { grid-template-columns: 1fr 1fr; }
-    .org-hline-wrap { display: none; }
-    .org-vline { height: 12px; }
+    .ladder-desc, .ladder-badge { grid-column: 2; }
+    .ladder-badge { justify-self: start; margin-top: 0.25rem; }
+    .ladder-gap { padding-left: 1rem; }
+    .org-split { grid-template-columns: 1fr; }
+    .org-split__bridge { flex-direction: row; padding: 0.5rem 0; }
+    .org-agents-grid { grid-template-columns: 1fr; }
+    .tool-logo-row--grid { grid-template-columns: repeat(5, 1fr); }
   }
 </style>
 </head>
@@ -1006,18 +1558,237 @@
   <div class="staffing-rail__fill" id="railFill"></div>
 </div>
 
-<div class="wordmark" aria-hidden="true">Build<span>Wise</span> Studios</div>
+<div class="wordmark" aria-hidden="true">Build<span>Wise</span></div>
 
-<div class="deck" id="deck">
+<div class="deck deck--slide-0" id="deck">
   <div class="slides" id="slides">
 
     <!-- Slide 1: Title -->
-    <section class="slide slide--title active" data-index="0" aria-label="Title">
+    <section class="slide slide--title slide--intro active" data-index="0" aria-label="Title">
       <div class="slide-inner">
-        <h1>BuildWise Studios</h1>
-        <p class="tagline">Agent Workforce for Executive Search</p>
-        <p class="prospect-line">[ Prospect Name ] — [ Date ]</p>
-        <p class="tagline" style="margin-top:2rem;font-size:1rem;">Staffing agents, not building projects.</p>
+        <div class="intro-copy">
+          <h1>BuildWise</h1>
+          <p class="tagline">Agent Workforce for Executive Search</p>
+          <p class="prospect-line">[ Prospect Name ] — [ Date ]</p>
+          <p class="tagline tagline--closing">Staffing agents, not building projects.</p>
+        </div>
+        <div id="heroChat" class="hero-chat" aria-hidden="true">
+          <div class="hero-chat__wrap">
+            <div class="hero-chat__glow"></div>
+            <div class="hero-chat__card">
+              <!-- Scene 1: Human friction -->
+              <div class="hero-chat__scene hero-chat__scene--chat is-visible" data-scene="human">
+                <div class="hero-chat__pill">Without BuildWise Agent</div>
+                <div class="hero-chat__header">
+                  <div class="hero-chat__contact">
+                    <div class="hero-chat__avatar hero-chat__avatar--human">MK</div>
+                    <div>
+                      <div class="hero-chat__name">Mike (Partner)</div>
+                      <div class="hero-chat__status">Last seen Sat 18:30</div>
+                    </div>
+                  </div>
+                  <div class="hero-chat__icons">
+                    <iconify-icon icon="solar:phone-linear"></iconify-icon>
+                    <iconify-icon icon="solar:videocamera-linear"></iconify-icon>
+                  </div>
+                </div>
+                <div class="hero-chat__body">
+                  <div class="hero-chat__bubble-wrap hero-chat__bubble-wrap--out">
+                    <div class="hero-chat__bubble hero-chat__bubble--out">
+                      John Colton might have moved to JP Morgan.
+                      <div class="hero-chat__meta">
+                        <span>Sat 21:00</span>
+                        <iconify-icon icon="solar:check-read-linear"></iconify-icon>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="hero-chat__bubble-wrap hero-chat__bubble-wrap--out">
+                    <div class="hero-chat__bubble hero-chat__bubble--out">
+                      Hey Mike, any update on this?
+                      <div class="hero-chat__meta">
+                        <span>Mon 10:00</span>
+                        <iconify-icon icon="solar:check-linear"></iconify-icon>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="hero-chat__stamp-wrap">
+                    <div class="hero-chat__stamp">No response. Opportunity aging...</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Scene 2: Agent response -->
+              <div class="hero-chat__scene hero-chat__scene--chat" data-scene="ai-response">
+                <div class="hero-chat__pill">With BuildWise Agent</div>
+                <div class="hero-chat__header">
+                  <div class="hero-chat__contact">
+                    <div class="hero-chat__avatar hero-chat__avatar--agent">
+                      <iconify-icon icon="solar:robot-2-linear"></iconify-icon>
+                    </div>
+                    <div>
+                      <div class="hero-chat__name">BuildWise Agent</div>
+                      <div class="hero-chat__status hero-chat__status--online">AI Assistant · Online</div>
+                    </div>
+                  </div>
+                  <div class="hero-chat__icons">
+                    <iconify-icon icon="solar:phone-linear"></iconify-icon>
+                    <iconify-icon icon="solar:videocamera-linear"></iconify-icon>
+                  </div>
+                </div>
+                <div class="hero-chat__body">
+                  <div class="hero-chat__bubble-wrap hero-chat__bubble-wrap--out">
+                    <div class="hero-chat__bubble hero-chat__bubble--out">
+                      John Colton might have moved to JP Morgan.
+                      <div class="hero-chat__meta">
+                        <span>Sat 21:00</span>
+                        <iconify-icon icon="solar:check-read-linear"></iconify-icon>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="hero-chat__bubble-wrap hero-chat__bubble-wrap--in">
+                    <div class="hero-chat__bubble hero-chat__bubble--in">
+                      Found a news confirming your hearsay. I updated the CRM accordingly and your JP Morgan org chart. I notified the team that his previous seat is now a potential lead to explore.
+                      <div class="hero-chat__meta">
+                        <span>Sat 21:01</span>
+                        <iconify-icon icon="solar:check-read-linear" class="hero-chat__check--amber"></iconify-icon>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="hero-chat__stamp-wrap">
+                    <div class="hero-chat__stamp hero-chat__stamp--success">Intelligence gathered, CRM updated, team notified · All actions completed</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Scene 3: Pipeline -->
+              <div class="hero-chat__scene hero-chat__scene--pipeline" data-scene="agent">
+                <div class="hero-pipeline__top">
+                  <div class="hero-pipeline__status">
+                    <span class="hero-pipeline__dot"></span>
+                    SYSTEM_ACTIVE
+                  </div>
+                  <div class="hero-pipeline__search">
+                    <iconify-icon icon="solar:magnifer-linear" style="color:#cbd5e1"></iconify-icon>
+                    SEARCH: JOHN COLTON (JPM?)
+                  </div>
+                </div>
+                <div class="hero-pipeline__stage">
+                  <svg class="hero-pipeline__svg" viewBox="0 0 320 300" aria-hidden="true">
+                    <path class="hero-pipeline__path" d="M 160 0 L 80 80" style="--path-delay: 0.3s"/>
+                    <path class="hero-pipeline__path" d="M 160 0 L 240 80" style="--path-delay: 0.3s"/>
+                    <path class="hero-pipeline__path" d="M 80 80 L 160 160" style="--path-delay: 1.2s"/>
+                    <path class="hero-pipeline__path" d="M 240 80 L 160 160" style="--path-delay: 1.2s"/>
+                    <path class="hero-pipeline__path" d="M 160 160 L 80 240" style="--path-delay: 2.6s"/>
+                    <path class="hero-pipeline__path" d="M 160 160 L 240 240" style="--path-delay: 2.6s"/>
+                    <circle r="2.5" fill="#D4A574" opacity="0">
+                      <animate attributeName="opacity" values="0;1;1;0" dur="0.9s" begin="0.4s" repeatCount="indefinite"/>
+                      <animateMotion dur="0.9s" begin="0.4s" repeatCount="indefinite" path="M 160 0 L 80 80"/>
+                    </circle>
+                    <circle r="2.5" fill="#D4A574" opacity="0">
+                      <animate attributeName="opacity" values="0;1;1;0" dur="0.9s" begin="0.4s" repeatCount="indefinite"/>
+                      <animateMotion dur="0.9s" begin="0.4s" repeatCount="indefinite" path="M 160 0 L 240 80"/>
+                    </circle>
+                    <circle r="2.5" fill="#D4A574" opacity="0">
+                      <animate attributeName="opacity" values="0;1;1;0" dur="0.9s" begin="1.3s" repeatCount="indefinite"/>
+                      <animateMotion dur="0.9s" begin="1.3s" repeatCount="indefinite" path="M 80 80 L 160 160"/>
+                    </circle>
+                    <circle r="2.5" fill="#D4A574" opacity="0">
+                      <animate attributeName="opacity" values="0;1;1;0" dur="0.9s" begin="1.3s" repeatCount="indefinite"/>
+                      <animateMotion dur="0.9s" begin="1.3s" repeatCount="indefinite" path="M 240 80 L 160 160"/>
+                    </circle>
+                    <circle r="2.5" fill="#D4A574" opacity="0">
+                      <animate attributeName="opacity" values="0;1;1;0" dur="0.9s" begin="2.7s" repeatCount="indefinite"/>
+                      <animateMotion dur="0.9s" begin="2.7s" repeatCount="indefinite" path="M 160 160 L 80 240"/>
+                    </circle>
+                    <circle r="2.5" fill="#D4A574" opacity="0">
+                      <animate attributeName="opacity" values="0;1;1;0" dur="0.9s" begin="2.7s" repeatCount="indefinite"/>
+                      <animateMotion dur="0.9s" begin="2.7s" repeatCount="indefinite" path="M 160 160 L 240 240"/>
+                    </circle>
+                  </svg>
+                  <div class="hero-pipeline__node" style="top:27%;left:25%;--node-delay:0.6s">
+                    <div class="hero-pipeline__node-box">
+                      <iconify-icon icon="fa6-brands:linkedin-in" style="color:#0077B5"></iconify-icon>
+                    </div>
+                    <span class="hero-pipeline__node-label">Research</span>
+                  </div>
+                  <div class="hero-pipeline__node" style="top:27%;right:25%;--node-delay:0.6s">
+                    <div class="hero-pipeline__node-box">
+                      <img src="bloomberg-icon.svg" alt="" width="24" height="24">
+                    </div>
+                    <span class="hero-pipeline__node-label">Market</span>
+                  </div>
+                  <div class="hero-pipeline__brain">
+                    <div class="hero-pipeline__brain-glow"></div>
+                    <iconify-icon icon="solar:bolt-bold"></iconify-icon>
+                    <span>ANALYSIS</span>
+                  </div>
+                  <div class="hero-pipeline__node" style="top:80%;left:25%;--node-delay:2.9s">
+                    <div class="hero-pipeline__writing">WRITING...</div>
+                    <div class="hero-pipeline__node-box">
+                      <iconify-icon icon="fa6-brands:salesforce" style="color:#00A1E0"></iconify-icon>
+                    </div>
+                    <span class="hero-pipeline__node-label">CRM</span>
+                  </div>
+                  <div class="hero-pipeline__node" style="top:80%;right:25%;--node-delay:3.2s">
+                    <div class="hero-pipeline__node-box">
+                      <iconify-icon icon="fa6-brands:whatsapp" style="color:#25D366"></iconify-icon>
+                    </div>
+                    <span class="hero-pipeline__node-label">Alert</span>
+                  </div>
+                  <div class="hero-pipeline__confirm">
+                    <p>"Confirmation: John Colton profile updated to JPM. Partners notified via CRM."</p>
+                    <div class="hero-chat__meta">
+                      <iconify-icon icon="solar:check-read-linear" style="color:#25D366;font-size:12px"></iconify-icon>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Scene 4: Constellation -->
+              <div class="hero-chat__scene hero-chat__scene--constellation" data-scene="constellation">
+                <div class="hero-constellation__stage">
+                  <svg class="hero-constellation__lines" aria-hidden="true">
+                    <line class="hero-constellation__line" x1="50%" y1="50%" x2="calc(50% + 0px)" y2="calc(50% - 85px)" style="--line-i:0"/>
+                    <line class="hero-constellation__line" x1="50%" y1="50%" x2="calc(50% + 90px)" y2="calc(50% - 45px)" style="--line-i:1"/>
+                    <line class="hero-constellation__line" x1="50%" y1="50%" x2="calc(50% + 90px)" y2="calc(50% + 45px)" style="--line-i:2"/>
+                    <line class="hero-constellation__line" x1="50%" y1="50%" x2="calc(50% + 0px)" y2="calc(50% + 85px)" style="--line-i:3"/>
+                    <line class="hero-constellation__line" x1="50%" y1="50%" x2="calc(50% - 90px)" y2="calc(50% + 45px)" style="--line-i:4"/>
+                    <line class="hero-constellation__line" x1="50%" y1="50%" x2="calc(50% - 90px)" y2="calc(50% - 45px)" style="--line-i:5"/>
+                  </svg>
+                  <div class="hero-constellation__core">
+                    <div class="hero-constellation__core-glow"></div>
+                    <iconify-icon icon="solar:bolt-bold"></iconify-icon>
+                  </div>
+                  <div class="hero-constellation__app" style="--app-x:0px;--app-y:-85px;--app-i:0">
+                    <iconify-icon icon="fa6-brands:linkedin-in" style="color:#0077B5"></iconify-icon>
+                    <span class="hero-constellation__signal"></span>
+                  </div>
+                  <div class="hero-constellation__app" style="--app-x:90px;--app-y:-45px;--app-i:1">
+                    <iconify-icon icon="fa6-brands:salesforce" style="color:#00A1E0"></iconify-icon>
+                    <span class="hero-constellation__signal"></span>
+                  </div>
+                  <div class="hero-constellation__app" style="--app-x:90px;--app-y:45px;--app-i:2">
+                    <iconify-icon icon="fa6-brands:whatsapp" style="color:#25D366"></iconify-icon>
+                    <span class="hero-constellation__signal"></span>
+                  </div>
+                  <div class="hero-constellation__app" style="--app-x:0px;--app-y:85px;--app-i:3">
+                    <iconify-icon icon="fa6-brands:microsoft" style="color:#0078D4"></iconify-icon>
+                    <span class="hero-constellation__signal"></span>
+                  </div>
+                  <div class="hero-constellation__app" style="--app-x:-90px;--app-y:45px;--app-i:4">
+                    <img src="bloomberg-icon.svg" alt="" width="24" height="24">
+                    <span class="hero-constellation__signal"></span>
+                  </div>
+                  <div class="hero-constellation__app" style="--app-x:-90px;--app-y:-45px;--app-i:5">
+                    <iconify-icon icon="fa6-brands:slack" style="color:#4A154B"></iconify-icon>
+                    <span class="hero-constellation__signal"></span>
+                  </div>
+                </div>
+                <div class="hero-constellation__tagline">
+                  <h4>Unified Intelligence</h4>
+                  <p>One Agent. Your Entire Stack.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1026,7 +1797,7 @@
       <div class="slide-inner">
         <p class="eyebrow">How We Operate</p>
         <h1>We deploy specialised AI agents into your firm — the same way you'd hire a new team member.</h1>
-        <p class="lead">Not a SaaS platform. Not a consulting project. A workforce.</p>
+        <p class="lead">Not a SaaS platform. Not a consulting project. <strong>Not a dev build.</strong></p>
         <ul class="trait-list">
           <li>A job title — e.g. CRM Capture Specialist, Pipeline Researcher</li>
           <li>A narrow scope — one role, one set of tools</li>
@@ -1042,7 +1813,19 @@
           <div class="col-card">
             <svg class="col-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
             <div class="col-head">Tools &amp; Scope</div>
-            <p>One role. One set of tools. Narrow, measurable boundaries.</p>
+            <p>One role. One set of tools. Plugs into your existing stack.</p>
+            <div class="tool-logo-row tool-logo-row--grid">
+              <span class="tool-logo" title="Slack"><iconify-icon icon="fa6-brands:slack" style="color:#4A154B"></iconify-icon></span>
+              <span class="tool-logo" title="Outlook"><iconify-icon icon="mdi:microsoft-outlook" style="color:#0078D4"></iconify-icon></span>
+              <span class="tool-logo" title="Excel"><iconify-icon icon="simple-icons:microsoftexcel" style="color:#217346"></iconify-icon></span>
+              <span class="tool-logo" title="Teams"><iconify-icon icon="simple-icons:microsoftteams" style="color:#6264A7"></iconify-icon></span>
+              <span class="tool-logo" title="Copilot"><iconify-icon icon="selfhst:microsoft-copilot"></iconify-icon></span>
+              <span class="tool-logo" title="Salesforce"><iconify-icon icon="fa6-brands:salesforce" style="color:#00A1E0"></iconify-icon></span>
+              <span class="tool-logo" title="OneDrive"><iconify-icon icon="simple-icons:microsoftonedrive" style="color:#0364B8"></iconify-icon></span>
+              <span class="tool-logo" title="PowerPoint"><iconify-icon icon="simple-icons:microsoftpowerpoint" style="color:#D24726"></iconify-icon></span>
+              <span class="tool-logo" title="Perplexity"><iconify-icon icon="simple-icons:perplexity" style="color:#1FB8CD"></iconify-icon></span>
+              <span class="tool-logo" title="LinkedIn"><iconify-icon icon="fa6-brands:linkedin-in" style="color:#0077B5"></iconify-icon></span>
+            </div>
           </div>
           <div class="col-card">
             <svg class="col-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-6"/></svg>
@@ -1060,33 +1843,40 @@
       <div class="slide-inner">
         <p class="eyebrow">The Landscape</p>
         <h1>Where Executive Search Sits Today</h1>
-        <p class="lead">Most firms we meet are at one of these stages. The value gap is between Copilot and Autopilot — most firms haven't crossed it yet.</p>
+        <p class="lead">Most firms we meet are stuck at Level 1 — Assisted. BuildWise helps you cross the gap to Autopilot, then grow toward Self-Driving.</p>
         <div class="ladder">
-          <div class="ladder-step ladder-step--muted">
+          <div class="ladder-step ladder-step--level1">
             <span class="ladder-rung">01</span>
             <span class="ladder-label">Assisted</span>
             <span class="ladder-desc">Partners use ChatGPT for drafting JDs, emails, candidate summaries</span>
+            <span class="ladder-badge ladder-badge--current">Where most firms are today</span>
           </div>
-          <div class="ladder-step ladder-step--muted">
+          <div class="ladder-step ladder-step--level2">
             <span class="ladder-rung">02</span>
             <span class="ladder-label">Copilot</span>
             <span class="ladder-desc">Tools suggest CRM updates or search queries — humans approve every step</span>
           </div>
-          <div class="ladder-gap">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-            The gap
+          <div class="ladder-gap" aria-hidden="true">
+            <span class="ladder-gap__arrow">↓</span>
+            <span class="ladder-gap__text">
+              <span class="ladder-gap__label">The gap</span>
+              <span class="ladder-gap__sub">Most firms never cross this</span>
+            </span>
           </div>
-          <div class="ladder-step ladder-step--accent">
+          <div class="ladder-step ladder-step--level3">
             <span class="ladder-rung">03</span>
             <span class="ladder-label">Autopilot</span>
             <span class="ladder-desc">Agents capture meetings, log CRM entries, flag exceptions — humans review</span>
+            <span class="ladder-badge ladder-badge--deploy">Where we deploy first</span>
           </div>
-          <div class="ladder-step ladder-step--future">
+          <div class="ladder-step ladder-step--level4">
             <span class="ladder-rung">04</span>
             <span class="ladder-label">Self-Driving</span>
             <span class="ladder-desc">Agents proactively find pipeline gaps, run searches, suggest actions</span>
+            <span class="ladder-badge ladder-badge--destination">The destination</span>
           </div>
         </div>
+        <p class="ladder-note">You don't jump to Level 4 — you <strong>hire agents at Level 3</strong>, then compound toward the destination.</p>
       </div>
     </section>
 
@@ -1095,25 +1885,19 @@
       <div class="slide-inner">
         <p class="eyebrow">The BuildWise Playbook</p>
         <h1>Phase 1 → Phase 2 → Phase 3</h1>
-        <p class="lead">Here's how every engagement works. Three phases, your pace.</p>
+        <p class="lead">Three phases. Your pace.</p>
         <div class="phase-track">
           <div class="phase-block phase-block--1">
-            <h3>Phase 1 — Agent Workforce Audit</h3>
-            <p class="phase-scope">We map your current workflows, identify where admin drag is highest, and design your agent org chart.</p>
-            <p class="phase-outcome">→ Baseline KPIs, process documentation, recommended agent roles, and a Phase 2 proposal.</p>
-            <p class="phase-commit">No commitment beyond this point unless Phase 2 is accepted.</p>
+            <h3>Phase 1 — Audit</h3>
+            <p class="phase-scope">Map workflows, baseline KPIs, agent org chart, Phase 2 proposal.</p>
           </div>
           <div class="phase-block phase-block--2">
-            <h3>Phase 2 — Deploy Agent #1</h3>
-            <p class="phase-scope">We deploy one agent for a single, narrow role. 30-day measured pilot.</p>
-            <p class="phase-outcome">→ Month 1: bundled setup + deployment + onboarding.<br>→ Month 2+: ongoing retainer, tacite renewal — cancel with 14 days' notice.</p>
-            <p class="phase-commit">If the ROI isn't there, you cancel. If it works, you continue.</p>
+            <h3>Phase 2 — First agent</h3>
+            <p class="phase-scope">Deploy one agent, 30-day measured pilot.</p>
           </div>
           <div class="phase-block phase-block--3">
             <h3>Phase 3 — Scale</h3>
-            <p class="phase-scope">Add Agent #2, Agent #3. Same playbook, adjacent roles, compounding savings.</p>
-            <p class="phase-outcome">→ Each new agent is a hire with lower setup cost — config, not rebuild.</p>
-            <p class="phase-commit">You decide when to add the next agent.</p>
+            <p class="phase-scope">Add agents one at a time, same playbook.</p>
           </div>
         </div>
         <div class="phase-connectors">
@@ -1129,35 +1913,47 @@
     <section class="slide" data-index="4" aria-label="Case Study">
       <div class="slide-inner">
         <p class="eyebrow">Case Study</p>
-        <h1>Real engagements, anonymised</h1>
+        <h1>Delivered outcomes</h1>
         <div class="cases">
           <article class="case-card">
-            <h3>Client A</h3>
-            <p class="case-meta">Mid-size executive search firm, ~10 consultants</p>
+            <h3>Database Match Agent</h3>
+            <p class="case-meta">Mid-size executive search firm</p>
             <p class="case-section-label">Pain</p>
             <ul class="case-pain">
-              <li>200+ applications received daily across email and internal database</li>
-              <li>Consultants manually copy-pasting between tools to process candidates</li>
+              <li>200+ applications daily across email and internal database</li>
+              <li>Consultants manually copying between email, GPT, and internal DB</li>
             </ul>
             <p class="case-section-label">Solution</p>
-            <p class="case-highlight">Candidate matching agent connected to their internal database</p>
+            <p class="case-highlight">Agent connected to internal database (Laser-style search)</p>
             <p class="case-section-label">Flow</p>
-            <p class="case-flow">Incoming CV → agent extracts key data → matches against active roles → returns ranked shortlist</p>
-            <p class="case-status">Phase 1 audit completed → Phase 2 deployed (ongoing)</p>
+            <div class="case-flow-bidir">
+              <div class="case-flow-item"><strong>Candidate → roles</strong>CV in → agent builds search context → ranked role shortlist</div>
+              <div class="case-flow-arrow">↔</div>
+              <div class="case-flow-item"><strong>Role → candidates</strong>JD/brief in → agent searches database → ranked candidate shortlist</div>
+            </div>
+            <div class="tool-logo-row case-logos">
+              <span class="tool-logo" title="Outlook"><iconify-icon icon="mdi:microsoft-outlook" style="color:#0078D4"></iconify-icon></span>
+              <span class="tool-logo" title="LinkedIn"><iconify-icon icon="fa6-brands:linkedin-in" style="color:#0077B5"></iconify-icon></span>
+              <span class="tool-logo" title="Database"><iconify-icon icon="solar:database-linear" style="color:#5C6470"></iconify-icon></span>
+            </div>
           </article>
           <article class="case-card">
-            <h3>Client B</h3>
-            <p class="case-meta">Large executive search firm, Salesforce-based CRM</p>
+            <h3>CRM Capture Agent</h3>
+            <p class="case-meta">Large executive search firm, Salesforce CRM</p>
             <p class="case-section-label">Pain</p>
             <ul class="case-pain">
-              <li>Consultants logging CRM entries hours or days after meetings</li>
+              <li>CRM updates hours or days after meetings</li>
               <li>Inconsistent data quality, lost commercial intel</li>
             </ul>
             <p class="case-section-label">Solution</p>
-            <p class="case-highlight">CRM capture agent accessible via Telegram</p>
+            <p class="case-highlight">Capture agent via Telegram (voice or text)</p>
             <p class="case-section-label">Flow</p>
-            <p class="case-flow">Consultant sends voice note or text → agent creates CRM record in real time</p>
-            <p class="case-status">Phase 1 agreed — agent scoped and ready for deployment</p>
+            <p class="case-flow">Consultant sends note after meeting → agent creates/updates CRM record → data logged without manual entry</p>
+            <div class="tool-logo-row case-logos">
+              <span class="tool-logo" title="Telegram"><iconify-icon icon="fa6-brands:telegram" style="color:#26A5E4"></iconify-icon></span>
+              <span class="tool-logo" title="Salesforce"><iconify-icon icon="fa6-brands:salesforce" style="color:#00A1E0"></iconify-icon></span>
+              <span class="tool-logo" title="Outlook"><iconify-icon icon="mdi:microsoft-outlook" style="color:#0078D4"></iconify-icon></span>
+            </div>
           </article>
         </div>
       </div>
@@ -1182,7 +1978,7 @@
             <tr><th>Before</th><th>After</th></tr>
           </thead>
           <tbody>
-            <tr><td>Manual CRM logging, hours after meetings</td><td>Automated capture in real time</td></tr>
+            <tr><td>Manual CRM logging, hours after meetings</td><td>Automated capture — less admin, less data loss</td></tr>
             <tr><td>Applications processed manually</td><td>Automated triage and ranking</td></tr>
             <tr><td>Consultants spending hours on admin</td><td>Consultants focused on candidate conversations</td></tr>
             <tr><td>CRM data quality degrades over time</td><td>CRM stays complete and current</td></tr>
@@ -1196,37 +1992,65 @@
     <section class="slide" data-index="7" aria-label="Your Future Agent Workforce">
       <div class="slide-inner">
         <p class="eyebrow">Your Future Agent Workforce</p>
-        <h1>Phase 1 delivers your agent org chart</h1>
-        <p class="lead">Each agent = one role, narrow scope, measurable KPIs. You approve one at a time, measure the impact, then decide on the next.</p>
-        <div class="org-chart">
-          <div class="org-tier"><div class="org-box org-box--ceo">CEO / Managing Partner</div></div>
-          <div class="org-vline"></div>
-          <div class="org-tier"><div class="org-box org-box--workforce">Agent Workforce (BuildWise-managed)</div></div>
-          <div class="org-vline"></div>
-          <div class="org-hline-wrap">
-            <div class="org-hline"></div>
-            <div class="org-hline-stems"><span></span><span></span><span></span><span></span></div>
+        <h1>Agents your team uses every day</h1>
+        <p class="lead">Consultants and ops staff stay at the centre — agents plug into their workflow as specialised tools, not a replacement tier.</p>
+        <div class="org-hub">
+          <div class="org-band">
+            <div class="org-box">CEO / Managing Partner</div>
+            <div class="org-vline"></div>
+            <div class="org-box org-box--staff">Consultants &amp; ops staff</div>
           </div>
-          <div class="org-agents">
-            <div class="org-agent org-agent--first">
-              <div class="agent-num">Agent #1</div>
-              <div class="agent-role">CRM Capture Specialist</div>
-              <div class="agent-tag">Hire first</div>
+          <div class="org-split">
+            <div>
+              <div class="org-split__label">Your team</div>
+              <div class="org-split__team-box">
+                <p>Partners and consultants who run searches, take meetings, and close placements — now with agents handling admin at their direction.</p>
+              </div>
             </div>
-            <div class="org-agent">
-              <div class="agent-num">Agent #2</div>
-              <div class="agent-role">Pipeline Retrieval</div>
-              <div class="agent-tag">Next</div>
+            <div class="org-split__bridge">
+              <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+              uses
+              <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
             </div>
-            <div class="org-agent">
-              <div class="agent-num">Agent #3</div>
-              <div class="agent-role">Meeting Follow-up</div>
-              <div class="agent-tag">Later</div>
-            </div>
-            <div class="org-agent org-agent--dim">
-              <div class="agent-num">Orchestrator</div>
-              <div class="agent-role">Routing &amp; escalation</div>
-              <div class="agent-tag">Future</div>
+            <div>
+              <div class="org-split__label">Agent workforce (BuildWise-managed)</div>
+              <div class="org-agents-grid">
+                <article class="org-agent-card org-agent-card--first">
+                  <div class="org-agent-card__tag">Hire first</div>
+                  <div class="org-agent-card__name">CRM Capture Agent</div>
+                  <div class="org-agent-card__desc">Logs meetings and contacts from voice or text</div>
+                  <div class="tool-logo-row">
+                    <span class="tool-logo"><iconify-icon icon="fa6-brands:telegram" style="color:#26A5E4"></iconify-icon></span>
+                    <span class="tool-logo"><iconify-icon icon="fa6-brands:salesforce" style="color:#00A1E0"></iconify-icon></span>
+                    <span class="tool-logo"><iconify-icon icon="mdi:microsoft-outlook" style="color:#0078D4"></iconify-icon></span>
+                  </div>
+                </article>
+                <article class="org-agent-card">
+                  <div class="org-agent-card__name">Applicant Triage Agent</div>
+                  <div class="org-agent-card__desc">Filters and ranks inbound CVs and applications</div>
+                  <div class="tool-logo-row">
+                    <span class="tool-logo"><iconify-icon icon="mdi:microsoft-outlook" style="color:#0078D4"></iconify-icon></span>
+                    <span class="tool-logo"><iconify-icon icon="fa6-brands:linkedin-in" style="color:#0077B5"></iconify-icon></span>
+                  </div>
+                </article>
+                <article class="org-agent-card">
+                  <div class="org-agent-card__name">Database Match Agent</div>
+                  <div class="org-agent-card__desc">Searches internal DB both ways — candidate ↔ role</div>
+                  <div class="tool-logo-row">
+                    <span class="tool-logo"><iconify-icon icon="solar:database-linear" style="color:#5C6470"></iconify-icon></span>
+                    <span class="tool-logo"><iconify-icon icon="simple-icons:microsoftexcel" style="color:#217346"></iconify-icon></span>
+                  </div>
+                </article>
+                <article class="org-agent-card org-agent-card--dim">
+                  <div class="org-agent-card__name">Pipeline Research Agent</div>
+                  <div class="org-agent-card__desc">Surfaces gaps and suggests search actions</div>
+                  <div class="tool-logo-row">
+                    <span class="tool-logo"><iconify-icon icon="simple-icons:perplexity" style="color:#1FB8CD"></iconify-icon></span>
+                    <span class="tool-logo"><iconify-icon icon="fa6-brands:linkedin-in" style="color:#0077B5"></iconify-icon></span>
+                    <span class="tool-logo"><iconify-icon icon="fa6-brands:salesforce" style="color:#00A1E0"></iconify-icon></span>
+                  </div>
+                </article>
+              </div>
             </div>
           </div>
         </div>
@@ -1320,11 +2144,76 @@
   let current = 0;
   let isAnimating = false;
 
+  const deck = document.getElementById('deck');
+  const heroChat = document.getElementById('heroChat');
+  const heroMount = heroChat ? heroChat.parentElement : null;
+  const slide0Inner = document.querySelector('.slide--intro .slide-inner');
   const railFill = document.getElementById('railFill');
   const dotsContainer = document.getElementById('navDots');
   const slideNumber = document.getElementById('slideNumber');
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
+
+  const CHAT_SCENES = ['human', 'ai-response', 'agent', 'constellation'];
+  const CHAT_DURATIONS = { human: 5000, 'ai-response': 8000, agent: 5000, constellation: 5000 };
+  const chatScenes = heroChat ? heroChat.querySelectorAll('.hero-chat__scene') : [];
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let chatSceneIndex = 0;
+  let chatTimeout = null;
+
+  function restartSceneAnimations(scene) {
+    if (!scene) return;
+    scene.classList.remove('is-visible');
+    void scene.offsetHeight;
+    scene.classList.add('is-visible');
+  }
+
+  function showChatScene(sceneKey) {
+    chatScenes.forEach(function (scene) {
+      var visible = scene.dataset.scene === sceneKey;
+      if (visible) restartSceneAnimations(scene);
+      else scene.classList.remove('is-visible');
+    });
+  }
+
+  function scheduleChatScene() {
+    if (chatTimeout) clearTimeout(chatTimeout);
+    var key = CHAT_SCENES[chatSceneIndex];
+    chatTimeout = setTimeout(function () {
+      chatSceneIndex = (chatSceneIndex + 1) % CHAT_SCENES.length;
+      showChatScene(CHAT_SCENES[chatSceneIndex]);
+      scheduleChatScene();
+    }, CHAT_DURATIONS[key]);
+  }
+
+  function placeHeroChat() {
+    if (!heroChat) return;
+    heroChat.classList.remove('hero-chat--hidden');
+    if (current === 0 && slide0Inner && heroMount) {
+      if (heroChat.parentElement !== heroMount) heroMount.appendChild(heroChat);
+    } else {
+      heroChat.classList.add('hero-chat--hidden');
+    }
+  }
+
+  function startChatLoop() {
+    stopChatLoop();
+    if (!heroChat || current !== 0) return;
+    if (prefersReducedMotion) {
+      chatSceneIndex = 1;
+      showChatScene('ai-response');
+      return;
+    }
+    showChatScene(CHAT_SCENES[chatSceneIndex]);
+    scheduleChatScene();
+  }
+
+  function stopChatLoop() {
+    if (chatTimeout) {
+      clearTimeout(chatTimeout);
+      chatTimeout = null;
+    }
+  }
 
   for (let i = 0; i < totalSlides; i++) {
     const dot = document.createElement('button');
@@ -1354,6 +2243,12 @@
     nextBtn.disabled = current === totalSlides - 1;
 
     railFill.style.height = ((current + 1) / totalSlides * 100) + '%';
+
+    deck.className = 'deck deck--slide-' + current;
+    placeHeroChat();
+
+    if (current === 0) startChatLoop();
+    else stopChatLoop();
   }
 
   function navigateTo(index) {
