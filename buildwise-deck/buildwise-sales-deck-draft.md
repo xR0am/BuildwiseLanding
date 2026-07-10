@@ -8,18 +8,18 @@
 
 ## Flow Overview
 
-| # | Slide | Time |
-|---|-------|------|
-| 1 | Title Card | — |
-| 2 | How We Operate | 2 min |
-| 3 | The Landscape: Where Executive Search Sits Today | 3 min |
-| 4 | The BuildWise Playbook: Phase 1 → Phase 2 → Phase 3 | 2 min |
-| 5 | Case Study | 3 min |
-| 6 | Live Demo | 8 min |
-| 7 | What This Means for Your Firm | 3 min |
-| 8 | Your Future Agent Workforce (Org Chart) | 3 min |
-| 9 | How We Start: Phase 1 — Agent Workforce Audit | 3 min |
-| 10 | Close: Questions & Next Step | 1 min |
+| #   | Slide                                               | Time  |
+| --- | --------------------------------------------------- | ----- |
+| 1   | Title Card                                          | —     |
+| 2   | The Landscape: Where Executive Search Sits Today    | 3 min |
+| 3   | How We Operate                                      | 2 min |
+| 4   | Live Demo                                           | 8 min |
+| 5   | The BuildWise Playbook: Phase 1 → Phase 2 → Phase 3 | 2 min |
+| 6   | Case Study                                          | 3 min |
+| 7   | What This Means for Your Firm                       | 3 min |
+| 8   | Your Future Agent Workforce (Org Chart)             | 3 min |
+| 9   | How We Start: Phase 1 — Agent Workforce Audit       | 3 min |
+| 10  | Close: Questions & Next Step                        | 1 min |
 
 ---
 
@@ -30,19 +30,37 @@ Agent Workforce for Executive Search
 
 [Prospect Name] — [Date]
 
-*Staffing agents, not building projects.*
+_Staffing agents, not building projects._
 
 **Visual pointers:** Clean slide. Logo top-left. Company name centred, subtitle below, tagline bottom. No images.
 
 ---
 
-## Slide 2 — How We Operate
+## Slide 2 — The Landscape: Where Executive Search Sits Today
+
+Most firms we meet are at one of these stages:
+
+| Level            | What it looks like                                                        |
+| ---------------- | ------------------------------------------------------------------------- |
+| **Assisted**     | Partners use ChatGPT for drafting JDs, emails, candidate summaries        |
+| **Copilot**      | Tools suggest CRM updates or search queries — humans approve every step   |
+| **Autopilot**    | Agents capture meetings, log CRM entries, flag exceptions — humans review |
+| **Self-Driving** | Agents proactively find pipeline gaps, run searches, suggest actions      |
+
+The value gap is between Assisted/Copilot and Autopilot. Most firms haven't crossed it yet.
+
+**Visual pointers:** Four-row vertical ladder/staircase. Top 2 rows in muted grey, bottom 2 in accent colour. Arrow pointing from Copilot to Autopilot labelled "the gap." Clean, minimal — no images.
+
+---
+
+## Slide 3 — How We Operate
 
 We deploy specialised AI agents into your firm — the same way you'd hire a new team member.
 
 Not a SaaS platform. Not a consulting project. A workforce.
 
 Each agent has:
+
 - A job title (e.g. CRM Capture Specialist, Pipeline Researcher)
 - A narrow scope — one role, one set of tools
 - KPIs we measure and report
@@ -54,24 +72,15 @@ You don't buy software. You grow a team.
 
 ---
 
-## Slide 3 — The Landscape: Where Executive Search Sits Today
+## Slide 4 — Live Demo
 
-Most firms we meet are at one of these stages:
+Charles switches to a live Telegram session to demonstrate an agent interacting with a CRM system in real time.
 
-| Level | What it looks like |
-|-------|-------------------|
-| **Assisted** | Partners use ChatGPT for drafting JDs, emails, candidate summaries |
-| **Copilot** | Tools suggest CRM updates or search queries — humans approve every step |
-| **Autopilot** | Agents capture meetings, log CRM entries, flag exceptions — humans review |
-| **Self-Driving** | Agents proactively find pipeline gaps, run searches, suggest actions |
-
-The value gap is between Assisted/Copilot and Autopilot. Most firms haven't crossed it yet.
-
-**Visual pointers:** Four-row vertical ladder/staircase. Top 2 rows in muted grey, bottom 2 in accent colour. Arrow pointing from Copilot to Autopilot labelled "the gap." Clean, minimal — no images.
+**Visual pointers:** Blank slide with just "Live Demo" centred. Charles transitions to screen share. No mockups or screenshots on the slide itself.
 
 ---
 
-## Slide 4 — The BuildWise Playbook: Phase 1 → Phase 2 → Phase 3
+## Slide 5 — The BuildWise Playbook: Phase 1 → Phase 2 → Phase 3
 
 Here's how every engagement works. Three phases, your pace.
 
@@ -96,9 +105,10 @@ All three phases follow the same principle: **each agent is a hire, not a projec
 
 ---
 
-## Slide 5 — Case Study
+## Slide 6 — Case Study
 
 **Client A** — Mid-size executive search firm, ~10 consultants
+
 - 200+ applications received daily across email and internal database
 - Consultants manually copy-pasting between tools to process candidates
 - **Solution:** Candidate matching agent connected to their internal database
@@ -106,6 +116,7 @@ All three phases follow the same principle: **each agent is a hire, not a projec
 - **Status:** Phase 1 audit completed → Phase 2 deployed (ongoing)
 
 **Client B** — Large executive search firm, Salesforce-based CRM
+
 - Consultants logging CRM entries hours or days after meetings
 - Inconsistent data quality, lost commercial intel
 - **Solution:** CRM capture agent accessible via Telegram
@@ -116,24 +127,16 @@ All three phases follow the same principle: **each agent is a hire, not a projec
 
 ---
 
-## Slide 6 — Live Demo
-
-Charles switches to a live Telegram session to demonstrate an agent interacting with a CRM system in real time.
-
-**Visual pointers:** Blank slide with just "Live Demo" centred. Charles transitions to screen share. No mockups or screenshots on the slide itself.
-
----
-
 ## Slide 7 — What This Means for Your Firm
 
 The impact we measure with every client:
 
-| Before | After |
-|--------|-------|
-| Manual CRM logging, hours after meetings | Automated capture in real time |
-| Applications processed manually | Automated triage and ranking |
-| Consultants spending hours on admin | Consultants focused on candidate conversations |
-| CRM data quality degrades over time | CRM stays complete and current |
+| Before                                   | After                                          |
+| ---------------------------------------- | ---------------------------------------------- |
+| Manual CRM logging, hours after meetings | Automated capture in real time                 |
+| Applications processed manually          | Automated triage and ranking                   |
+| Consultants spending hours on admin      | Consultants focused on candidate conversations |
+| CRM data quality degrades over time      | CRM stays complete and current                 |
 
 Phase 1 establishes your specific baseline. Phase 2 measures the actual delta. You decide based on your numbers.
 
@@ -163,6 +166,7 @@ Each agent = one role, narrow scope, measurable KPIs. You approve one at a time,
 ## Slide 9 — How We Start: Phase 1 — Agent Workforce Audit
 
 **What you receive:**
+
 - 1–2 facilitated discovery sessions
 - Documentation of your current processes and pain points
 - Agent org chart — recommended roles for your firm
@@ -184,6 +188,6 @@ Each agent = one role, narrow scope, measurable KPIs. You approve one at a time,
 **Investment:** 10–15k HKD
 **No commitment beyond Phase 1.**
 
-*"The question isn't 'should we try AI?' — it's 'which agent do we deploy first?'"*
+_"The question isn't 'should we try AI?' — it's 'which agent do we deploy first?'"_
 
 **Visual pointers:** Clean, minimal. Clear CTA text. Contact details bottom. No logos.

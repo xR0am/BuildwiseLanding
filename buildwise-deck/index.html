@@ -1647,6 +1647,169 @@
     .hero-pipeline__brain { transform: translate(-50%, -50%) !important; }
   }
 
+  /* ── Print / PDF export ──────────────────────────────────────── */
+  @media print {
+    @page {
+      size: 11in 8.5in landscape;
+      margin: 0;
+    }
+
+    html, body {
+      height: auto;
+      overflow: visible;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+
+    .staffing-rail,
+    .nav-controls,
+    .slide-meta {
+      display: none !important;
+    }
+
+    .wordmark {
+      position: fixed;
+      top: 0.6rem;
+      left: 1.25rem;
+      z-index: 1000;
+    }
+
+    .deck {
+      height: auto;
+      width: 100%;
+      overflow: visible;
+    }
+
+    .slides {
+      height: auto;
+    }
+
+    .slide {
+      position: relative;
+      inset: auto;
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 1 !important;
+      visibility: visible !important;
+      width: 11in;
+      height: 8.5in;
+      max-height: 8.5in;
+      min-height: 8.5in;
+      padding: 1rem 1.5rem 1.1rem 1.85rem;
+      overflow: hidden;
+      page-break-after: always;
+      break-after: page;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      box-sizing: border-box;
+    }
+
+    .slide:last-child {
+      page-break-after: auto;
+      break-after: auto;
+    }
+
+    .slide-inner {
+      width: 100%;
+      max-height: 100%;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .slide h1 {
+      font-size: clamp(1.55rem, 2.6vw, 2rem);
+      margin-bottom: 0.55rem;
+      line-height: 1.1;
+    }
+
+    .slide--title h1 { font-size: clamp(2rem, 3.5vw, 2.5rem); }
+    .slide--intro h1 { font-size: clamp(1.9rem, 3.2vw, 2.35rem); }
+
+    .eyebrow { margin-bottom: 0.45rem; font-size: 0.65rem; }
+    .lead { font-size: 0.88rem; margin-bottom: 0.65rem; line-height: 1.45; }
+    p { font-size: 0.8rem; line-height: 1.45; }
+
+    .slide--intro .slide-inner {
+      display: grid;
+      grid-template-columns: 1fr 0.95fr;
+      gap: 0.85rem;
+      align-items: center;
+      max-width: 100%;
+    }
+
+    .hero-chat {
+      transform: scale(0.72);
+      transform-origin: center center;
+      margin: -0.5rem 0;
+    }
+
+    .three-col { gap: 0.55rem; }
+    .col-card { padding: 0.55rem 0.65rem; }
+    .col-card p { font-size: 0.72rem; }
+    .trait-list { margin-bottom: 0.65rem; }
+    .trait-list li { font-size: 0.78rem; padding: 0.2rem 0; }
+
+    .ladder { gap: 0.2rem; }
+    .ladder-step { padding: 0.35rem 0; }
+    .ladder-desc { font-size: 0.72rem; }
+    .ladder-note { font-size: 0.75rem; margin-top: 0.35rem; }
+
+    .phase-track { gap: 0.55rem; }
+    .phase-block { padding: 0.55rem 0.65rem; }
+    .phase-block h3 { font-size: 0.82rem; }
+    .phase-scope, .phase-commitment { font-size: 0.72rem; }
+
+    .cases { gap: 0.55rem; }
+    .case-card { padding: 0.55rem 0.65rem; }
+    .case-card h3 { font-size: 0.88rem; }
+    .case-pain li, .case-flow, .case-flow-item { font-size: 0.72rem; }
+
+    .compare-table { font-size: 0.72rem; }
+    .compare-table th, .compare-table td { padding: 0.4rem 0.55rem; }
+
+    .org-tree__footnote { font-size: 0.72rem; margin-top: 0.35rem; }
+    .org-box { font-size: 0.72rem; padding: 0.35rem 0.55rem; }
+    .org-agent-card { padding: 0.35rem 0.45rem; }
+    .org-agent-card__name { font-size: 0.72rem; }
+    .org-agent-card__desc, .org-agent-card__usedby { font-size: 0.64rem; }
+    .org-agents-row { gap: 0.35rem; }
+
+    .deliverable-list li { padding: 0.28rem 0; font-size: 0.78rem; }
+    .offer-meta { gap: 0.65rem; margin-top: 0.55rem; }
+    .offer-meta-value { font-size: 0.82rem; }
+
+    .slide[aria-label="How We Operate"] .slide-inner,
+    .slide[aria-label="Case Study"] .slide-inner {
+      transform: scale(0.92);
+      transform-origin: top center;
+    }
+
+    .slide[aria-label="Your Future Agent Workforce"] .slide-inner {
+      transform: scale(0.78);
+      transform-origin: top center;
+    }
+
+    .slide[aria-label="How We Start"] .slide-inner {
+      transform: scale(0.9);
+      transform-origin: top center;
+    }
+
+    .slide.active .slide-inner > * {
+      animation: none;
+      opacity: 1;
+    }
+
+    .hero-chat__scene {
+      display: none;
+    }
+
+    .hero-chat__scene[data-scene="ai-response"] {
+      display: block;
+      opacity: 1 !important;
+    }
+  }
+
   /* ── Responsive ──────────────────────────────────────────────── */
   @media (max-width: 768px) {
     .slide { padding: 3rem 1.25rem 5rem 1.75rem; }
@@ -1928,8 +2091,50 @@
       </div>
     </section>
 
-    <!-- Slide 2: How We Operate -->
-    <section class="slide" data-index="1" aria-label="How We Operate">
+    <!-- Slide 2: Landscape -->
+    <section class="slide" data-index="1" aria-label="The Landscape">
+      <div class="slide-inner">
+        <p class="eyebrow">The Landscape</p>
+        <h1>Where Executive Search Sits Today</h1>
+        <p class="lead">Most firms we meet are stuck at Level 1 — Assisted. BuildWise helps you cross the gap to Autopilot, then grow toward Self-Driving.</p>
+        <div class="ladder">
+          <div class="ladder-step ladder-step--level1">
+            <span class="ladder-rung">01</span>
+            <span class="ladder-label">Assisted</span>
+            <span class="ladder-desc">Partners use ChatGPT for drafting JDs, emails, candidate summaries</span>
+            <span class="ladder-badge ladder-badge--current">Where most firms are today</span>
+          </div>
+          <div class="ladder-step ladder-step--level2">
+            <span class="ladder-rung">02</span>
+            <span class="ladder-label">Copilot</span>
+            <span class="ladder-desc">Tools suggest CRM updates or search queries — humans approve every step</span>
+          </div>
+          <div class="ladder-gap" aria-hidden="true">
+            <span class="ladder-gap__arrow">↓</span>
+            <span class="ladder-gap__text">
+              <span class="ladder-gap__label">The gap</span>
+              <span class="ladder-gap__sub">Most firms never cross this</span>
+            </span>
+          </div>
+          <div class="ladder-step ladder-step--level3">
+            <span class="ladder-rung">03</span>
+            <span class="ladder-label">Autopilot</span>
+            <span class="ladder-desc">Agents capture meetings, log CRM entries, flag exceptions — humans review</span>
+            <span class="ladder-badge ladder-badge--deploy">Where we deploy first</span>
+          </div>
+          <div class="ladder-step ladder-step--level4">
+            <span class="ladder-rung">04</span>
+            <span class="ladder-label">Self-Driving</span>
+            <span class="ladder-desc">Agents proactively find pipeline gaps, run searches, suggest actions</span>
+            <span class="ladder-badge ladder-badge--destination">The destination</span>
+          </div>
+        </div>
+        <p class="ladder-note">You don't jump to Level 4 — you <strong>hire agents at Level 3</strong>, then compound toward the destination.</p>
+      </div>
+    </section>
+
+    <!-- Slide 3: How We Operate -->
+    <section class="slide" data-index="2" aria-label="How We Operate">
       <div class="slide-inner">
         <p class="eyebrow">How We Operate</p>
         <h1>We deploy specialised AI agents into your firm — the same way you'd hire a new team member.</h1>
@@ -1974,50 +2179,16 @@
       </div>
     </section>
 
-    <!-- Slide 3: Landscape -->
-    <section class="slide" data-index="2" aria-label="The Landscape">
-      <div class="slide-inner">
-        <p class="eyebrow">The Landscape</p>
-        <h1>Where Executive Search Sits Today</h1>
-        <p class="lead">Most firms we meet are stuck at Level 1 — Assisted. BuildWise helps you cross the gap to Autopilot, then grow toward Self-Driving.</p>
-        <div class="ladder">
-          <div class="ladder-step ladder-step--level1">
-            <span class="ladder-rung">01</span>
-            <span class="ladder-label">Assisted</span>
-            <span class="ladder-desc">Partners use ChatGPT for drafting JDs, emails, candidate summaries</span>
-            <span class="ladder-badge ladder-badge--current">Where most firms are today</span>
-          </div>
-          <div class="ladder-step ladder-step--level2">
-            <span class="ladder-rung">02</span>
-            <span class="ladder-label">Copilot</span>
-            <span class="ladder-desc">Tools suggest CRM updates or search queries — humans approve every step</span>
-          </div>
-          <div class="ladder-gap" aria-hidden="true">
-            <span class="ladder-gap__arrow">↓</span>
-            <span class="ladder-gap__text">
-              <span class="ladder-gap__label">The gap</span>
-              <span class="ladder-gap__sub">Most firms never cross this</span>
-            </span>
-          </div>
-          <div class="ladder-step ladder-step--level3">
-            <span class="ladder-rung">03</span>
-            <span class="ladder-label">Autopilot</span>
-            <span class="ladder-desc">Agents capture meetings, log CRM entries, flag exceptions — humans review</span>
-            <span class="ladder-badge ladder-badge--deploy">Where we deploy first</span>
-          </div>
-          <div class="ladder-step ladder-step--level4">
-            <span class="ladder-rung">04</span>
-            <span class="ladder-label">Self-Driving</span>
-            <span class="ladder-desc">Agents proactively find pipeline gaps, run searches, suggest actions</span>
-            <span class="ladder-badge ladder-badge--destination">The destination</span>
-          </div>
-        </div>
-        <p class="ladder-note">You don't jump to Level 4 — you <strong>hire agents at Level 3</strong>, then compound toward the destination.</p>
+    <!-- Slide 4: Live Demo -->
+    <section class="slide slide--demo" data-index="3" aria-label="Live Demo">
+      <div class="slide-inner" style="text-align:center;">
+        <h1>Live Demo</h1>
+        <p class="demo-note">Charles switches to a live Telegram session</p>
       </div>
     </section>
 
-    <!-- Slide 4: Playbook -->
-    <section class="slide" data-index="3" aria-label="The BuildWise Playbook">
+    <!-- Slide 5: Playbook -->
+    <section class="slide" data-index="4" aria-label="The BuildWise Playbook">
       <div class="slide-inner">
         <p class="eyebrow">The BuildWise Playbook</p>
         <h1>Phase 1 → Phase 2 → Phase 3</h1>
@@ -2048,8 +2219,8 @@
       </div>
     </section>
 
-    <!-- Slide 5: Case Study -->
-    <section class="slide" data-index="4" aria-label="Case Study">
+    <!-- Slide 6: Case Study -->
+    <section class="slide" data-index="5" aria-label="Case Study">
       <div class="slide-inner">
         <p class="eyebrow">Case Study</p>
         <h1>Delivered outcomes</h1>
@@ -2095,14 +2266,6 @@
             </div>
           </article>
         </div>
-      </div>
-    </section>
-
-    <!-- Slide 6: Live Demo -->
-    <section class="slide slide--demo" data-index="5" aria-label="Live Demo">
-      <div class="slide-inner" style="text-align:center;">
-        <h1>Live Demo</h1>
-        <p class="demo-note">Charles switches to a live Telegram session</p>
       </div>
     </section>
 
