@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" fill="none" role="img" aria-label="Buildwise">
+  <!-- Stacked lockup: egg mark + wordmark (matches LinkedIn company logo layout) -->
+  <g transform="translate(120 28)">
+    <path
+      d="M0 22c6.23-.05 7.87-5.57 7.5-10-.36-4.34-3.95-9.96-7.5-10-3.55.04-7.14 5.66-7.5 10-.37 4.43 1.27 9.95 7.5 10z"
+      transform="translate(-12 -12) scale(1.35)"
+      stroke="#D4A574"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </g>
+  <text
+    x="120"
+    y="88"
+    text-anchor="middle"
+    font-family="Inter, system-ui, sans-serif"
+    font-size="28"
+    font-weight="700"
+    letter-spacing="-0.02em"
+    fill="#1A1A1A"
+  >Buildwise</text>
+</svg>

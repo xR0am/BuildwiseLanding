@@ -4,32 +4,10 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
-VARIANT="${1:-personal}"
+OUTPUT="buildwise-logo-300.png"
+OUTPUT_2X="buildwise-logo-300-2x.png"
+HTML_FILE="file://${SCRIPT_DIR}/logo-lockup.html"
 SCALE=2
-
-case "$VARIANT" in
-  personal)
-    HTML="banner.html"
-    OUTPUT="linkedin-banner-charles.png"
-    OUTPUT_2X="linkedin-banner-charles-2x.png"
-    ;;
-  company)
-    HTML="banner-company.html"
-    OUTPUT="linkedin-banner-company.png"
-    OUTPUT_2X="linkedin-banner-company-2x.png"
-    ;;
-  all)
-    "$0" personal
-    "$0" company
-    exit 0
-    ;;
-  *)
-    echo "Usage: $0 [personal|company|all]" >&2
-    exit 1
-    ;;
-esac
-
-HTML_FILE="file://${SCRIPT_DIR}/${HTML}"
 
 CHROME_PATHS=(
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
@@ -46,17 +24,17 @@ for path in "${CHROME_PATHS[@]}"; do
 done
 
 if [[ -z "$CHROME" ]]; then
-  echo "Error: Chrome/Chromium not found. Open ${HTML} in a browser and screenshot manually." >&2
+  echo "Error: Chrome/Chromium not found. Open logo-lockup.html in a browser and screenshot manually." >&2
   exit 1
 fi
 
-echo "Exporting ${VARIANT} banner at ${SCALE}x device scale..."
+echo "Exporting logo at ${SCALE}x device scale..."
 "$CHROME" \
   --headless=new \
   --disable-gpu \
   --hide-scrollbars \
   --force-device-scale-factor="${SCALE}" \
-  --window-size=1584,396 \
+  --window-size=300,300 \
   --screenshot="$SCRIPT_DIR/$OUTPUT_2X" \
   "$HTML_FILE"
 
@@ -65,8 +43,8 @@ if [[ ! -f "$OUTPUT_2X" ]]; then
   exit 1
 fi
 
-echo "Downscaling to 1584x396..."
-sips -z 396 1584 "$OUTPUT_2X" --out "$OUTPUT" >/dev/null
+echo "Downscaling to 300x300..."
+sips -z 300 300 "$OUTPUT_2X" --out "$OUTPUT" >/dev/null
 
 if [[ -f "$OUTPUT" ]]; then
   echo "Done: ${SCRIPT_DIR}/${OUTPUT}"

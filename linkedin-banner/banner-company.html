@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=1584">
-  <title>Buildwise LinkedIn Banner</title>
+  <title>Buildwise LinkedIn Banner — Company</title>
   <style>
     @font-face {
       font-family: 'Inter';
@@ -86,12 +86,12 @@
       pointer-events: none;
     }
 
-    .banner__photo-fade {
+    .banner__logo-fade {
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 420px;
-      height: 220px;
+      width: 320px;
+      height: 200px;
       background: linear-gradient(135deg, rgba(248, 247, 245, 0.95) 0%, transparent 70%);
       pointer-events: none;
     }
@@ -106,38 +106,13 @@
       z-index: 10;
     }
 
-    .logo {
-      position: absolute;
-      top: 44px;
-      left: 64px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      z-index: 20;
-    }
-
-    .logo__icon {
-      width: 38px;
-      height: 38px;
-      flex-shrink: 0;
-    }
-
-    .logo__wordmark {
-      font-size: 19px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-      color: var(--ink);
-      line-height: 1;
-    }
-
     .tagline-block {
       position: absolute;
-      left: 440px;
-      right: 80px;
-      top: 45%;
-      transform: translateY(-50%);
-      text-align: left;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(1100px, 88%);
+      text-align: center;
       z-index: 20;
     }
 
@@ -174,15 +149,8 @@
     <div class="banner__glow" aria-hidden="true"></div>
     <div class="banner__grid" aria-hidden="true"></div>
     <div class="banner__noise" aria-hidden="true"></div>
-    <div class="banner__photo-fade" aria-hidden="true"></div>
+    <div class="banner__logo-fade" aria-hidden="true"></div>
     <div class="staffing-rail" aria-hidden="true"></div>
-
-    <div class="logo">
-      <svg class="logo__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M12 22c6.23-.05 7.87-5.57 7.5-10-.36-4.34-3.95-9.96-7.5-10-3.55.04-7.14 5.66-7.5 10-.37 4.43 1.27 9.95 7.5 10z"/>
-      </svg>
-      <span class="logo__wordmark">Buildwise</span>
-    </div>
 
     <div class="tagline-block">
       <p class="tagline-primary">
