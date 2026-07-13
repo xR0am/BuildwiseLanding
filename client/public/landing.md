@@ -1,15 +1,15 @@
 # Buildwise Studios — Home Hub
 
-> AI agents built for your industry — not everyone's inbox.
+> We staff AI agents into professional services — like hires, not software.
 
-Buildwise builds workflow agents for professional services. Pick your vertical for the full story — or scope a custom build if you're not on the list yet.
+Buildwise staffs AI agents into professional services firms — narrow roles, monthly retainer, measured KPIs. Each agent is a hire, not a project. Pick your vertical for the full story — or scope a custom role if you're not on the list yet.
 
 **Site:** https://buildwise-studios.com/
 
 ## Hero
 
-- **Tagline:** Vertical AI Agents
-- **Headline:** AI agents built for your industry — not everyone's inbox
+- **Tagline:** Agent Staffing for Professional Services
+- **Headline:** We staff AI agents — they work like hires, not software
 - **Primary CTA:** See our verticals (`#verticals`)
 - **Secondary CTA:** Scope with Jason → `/ai-product-manager`
 
@@ -39,9 +39,9 @@ Not on the list yet? Ten minutes with our scoping agent to map workflows and see
 
 ## How We Work
 
-1. **Find the workflow** — Identify repetitive, high-value work that steals 20+ hours a month per person.
-2. **Build for the vertical** — Agents trained on your industry's tools, playbooks, and judgment patterns — not a generic chatbot.
-3. **Deploy in 30 days** — Integration, training, and handoff. Your team delegates; agents handle the rest.
+1. **Audit & baseline** — We map your org chart, measure the time sink, and write the agent's job description with hard KPIs — before anything goes live.
+2. **Place & prove** — 30-day pilot with one agent in one narrow role. Same task, same operator — measured with and without the agent.
+3. **Convert & expand** — KPI threshold hit? The agent stays on monthly retainer. Add the next hire — each new agent is a seat, not a new project.
 
 ## Not Sure Where to Start?
 

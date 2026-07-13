@@ -4,19 +4,19 @@ import { motion, AnimatePresence } from "framer-motion";
 const faqs = [
   {
     q: "Which industries do you cover today?",
-    a: "Executive search and Hong Kong legal workflows are live. Other professional services go through scoping first — we only build where the ROI is clear.",
+    a: "Executive search and Hong Kong legal roles are live. Other professional services go through scoping first — we only staff agents where the ROI is clear.",
   },
   {
     q: "How is this different from ChatGPT or Copilot?",
-    a: "Vertical agents connect to your stack, follow your playbooks, and run repeatable workflows end to end. They're built for one industry, not general Q&A.",
+    a: "We don't sell you a tool — we staff the agent, run it for you, and charge a monthly retainer like a hire. Our agents connect to your stack, follow your playbooks, and run repeatable workflows end to end. They're placed into one narrow role, not a general Q&A interface.",
   },
   {
-    q: "How long does setup take?",
-    a: "About 30 days from kickoff to deployment — integration, customization, and team handoff included.",
+    q: "How long does it take to onboard an agent?",
+    a: "Phase 1 audit (baseline + job description) takes about a week. Then a 30-day pilot with one agent in one narrow role — measured against the baseline with hard KPIs. If the numbers hold, the agent converts to monthly retainer.",
   },
   {
-    q: "Can we start with one workflow?",
-    a: "Yes. Most clients start with the highest-ROI workflow, prove the value, then expand.",
+    q: "Can we start with one agent?",
+    a: "Yes — and we recommend it. Most clients start with one agent in the highest-ROI role, prove the value against baseline KPIs, then add more agents. Each new agent is a seat, not a new project.",
   },
 ];
 

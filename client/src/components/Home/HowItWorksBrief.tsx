@@ -4,18 +4,18 @@ import { motion, useInView } from "framer-motion";
 const steps = [
   {
     num: "01",
-    title: "Find the workflow",
-    body: "We identify repetitive, high-value work — the kind that steals 20+ hours a month per person.",
+    title: "Audit & baseline",
+    body: "We map your org chart, measure the time sink, and define the agent's job description with hard KPIs — before a single agent goes live.",
   },
   {
     num: "02",
-    title: "Build for the vertical",
-    body: "Agents trained on your industry's tools, playbooks, and judgment patterns — not a generic chatbot.",
+    title: "Place & prove",
+    body: "30-day pilot with one agent in one narrow role. Same task, same operator — measured with and without the agent.",
   },
   {
     num: "03",
-    title: "Deploy in 30 days",
-    body: "Integration, training, and handoff. Your team delegates; agents handle the rest.",
+    title: "Convert & expand",
+    body: "KPI threshold hit? The agent stays on monthly retainer. Add the next hire — each new agent is a seat, not a new project.",
   },
 ];
 

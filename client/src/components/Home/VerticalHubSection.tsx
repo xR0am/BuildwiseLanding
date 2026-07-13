@@ -15,7 +15,7 @@ const verticals = [
     id: "legal",
     name: "Hong Kong Legal",
     status: "Live",
-    hook: "Workflow agents for firms, in-house teams, and businesses — contract triage, review, and deadlines.",
+    hook: "Workflow agents placed into firms, in-house teams, and businesses — contract triage, review, and deadlines.",
     href: VERTICAL_ROUTES.legal,
     cta: "Explore legal workflows",
   },
@@ -23,7 +23,7 @@ const verticals = [
     id: "custom",
     name: "Your Industry",
     status: "Scoping",
-    hook: "Not on the list yet? Ten minutes with our scoping agent to map workflows and see if we can build for you.",
+    hook: "Not on the list yet? Ten minutes with our scoping agent to map workflows and see if we can staff agents for you.",
     href: VERTICAL_ROUTES.scoping,
     cta: "Scope your workflows",
   },
@@ -37,8 +37,8 @@ const VerticalHubSection: React.FC = () => (
           Pick Your Vertical
         </h2>
         <p className="font-sans text-lg text-subtle font-light max-w-2xl mx-auto leading-relaxed">
-          Each industry gets its own agents and playbooks. Choose yours below — workflows, examples,
-          and next steps live on that page.
+          Each industry gets purpose-built agents with defined roles. Choose yours below — agent
+          roles, examples, and next steps live on that page.
         </p>
       </div>
 

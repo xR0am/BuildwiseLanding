@@ -1,8 +1,8 @@
-# Buildwise Studios — Executive Search
+# Buildwise Studios — Executive Search Agent Staffing
 
-> Intelligence agents for executive search firms that handle market intelligence, CRM updates, and office admin so partners can focus on relationships and placements.
+> We staff AI agents into headhunting firms — narrow roles, monthly retainer, measured KPIs. Each agent is a hire, not a project.
 
-Buildwise Studios deploys purpose-built AI agents for headhunting — trained on executive search workflows, not generic inbox tasks. Partners typically reclaim 20+ hours per month per person on work that does not close deals.
+Buildwise Studios places purpose-built AI agents inside executive search firms — trained on headhunting workflows, not generic inbox tasks. Partners typically reclaim 20+ hours per month per person on work that does not close deals. We audit first, place one agent on a 30-day pilot with measured baselines, then convert to monthly retainer if KPIs hit.
 
 ## Primary
 
