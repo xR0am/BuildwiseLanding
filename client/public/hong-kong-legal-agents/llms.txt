@@ -1,8 +1,8 @@
-# Buildwise Studios — Hong Kong Legal
+# Buildwise Studios — Hong Kong Legal Agent Staffing
 
-> Workflow AI agents for Hong Kong legal teams — contract triage, first-pass review, and deadline tracking inside your environment and playbooks.
+> We staff workflow agents into Hong Kong legal teams — contract triage, first-pass review, and deadline tracking inside your environment and playbooks. Each agent is a hire, not a project.
 
-Buildwise Studios builds legal workflow agents for Hong Kong law firms, in-house teams, and businesses with growing legal workload. Every output is a draft for lawyer review — agents do the first pass; qualified lawyers verify and decide.
+Buildwise Studios places legal workflow agents inside Hong Kong law firms, in-house teams, and businesses with growing legal workload. Every output is a draft for lawyer review — agents do the first pass; qualified lawyers verify and decide. Same model as every vertical: audit the workflow, pilot one agent with measured baselines, convert to monthly retainer when KPIs hit.
 
 ## Primary
 

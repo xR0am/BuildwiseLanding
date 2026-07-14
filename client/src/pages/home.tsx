@@ -74,8 +74,8 @@ export default function Home() {
             </h1>
 
             <p className="font-sans text-lg text-slate-600 font-light leading-relaxed max-w-lg">
-              Buildwise builds workflow agents for professional services. Pick your vertical for the
-              full story — or scope a custom build if you&apos;re not on the list yet.
+              We staff AI agents into professional services firms — narrow roles, monthly retainer,
+              measured KPIs. Each agent is a hire, not a project.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-1">
@@ -131,7 +131,7 @@ export default function Home() {
                 </span>
               </div>
               <p className="text-xs text-subtle leading-relaxed">
-                Vertical AI agents for professional services. Built in Hong Kong.
+                AI agents staffed into professional services — like hires, not software. Built in Hong Kong.
               </p>
               <p className="text-[10px] text-border">© 2025 Buildwise Studios. All rights reserved.</p>
             </div>

@@ -1,11 +1,11 @@
 # Intelligence Agents for Executive Search
 
-> Your partners are wasting 20+ hours per month on work intelligence agents should handle.
+> We staff AI agents into your firm — like hires, not software.
 
-**By Buildwise Studios**  
+**By Buildwise Studios**
 **URL:** https://buildwise-studios.com/ai-agents-for-headhunting-professionals
 
-Executive search is about relationships and judgment calls — not updating org charts, monitoring LinkedIn, or logging notes into Salesforce from a taxi. Buildwise deploys AI agents that work 24/7, never take holidays, and cost less than a junior assistant.
+Executive search is about relationships and judgment calls — not updating org charts, monitoring LinkedIn, or logging notes into Salesforce from a taxi. Buildwise places AI agents into defined roles inside your firm — narrow job descriptions, monthly retainer, measured KPIs. Each agent costs less than a junior assistant and works 24/7.
 
 ## The Problem
 
@@ -15,38 +15,41 @@ Partners waste **25+ hours per partner monthly** on admin that does not build re
 - Manually logging CRM notes after client meetings (often days later, from memory)
 - Manually monitoring market intelligence to spot placement opportunities before competitors
 
-## Intelligence Agents
+## Agent Roles
 
-### Market Intelligence Agent
+Each agent is placed into a defined role — narrow job description, hard boundaries, measured KPIs. Like a hire, not a SaaS tool.
 
-- **Hook:** Watch a partner discover an executive movement and get instant org chart updates
-- **Pain:** Partner spends ~15 hours monthly tracking news and LinkedIn for executive moves
-- **Value:** Hours redirected to high-talent interviews and deal-making; never miss an executive movement
+### CRM Capture Specialist
 
-### Office Assistant Agent
+- **Role:** Log contacts, meetings, and notes to CRM in real time — no manual entry from memory
+- **Pain:** Partner spends ~8 hours monthly logging notes days later, from memory. CRM records incomplete.
+- **KPI:** Contacts logged/week, meetings captured, data completeness %
 
-- **Hook:** See admin work disappear while partners focus on client relationships
-- **Pain:** Partner spends ~10 hours monthly formatting presentations and entering candidate data
-- **Value:** Evenings reclaimed for strategic planning; professional presentations ready in under a minute
+### Market Intelligence Specialist
 
-### CRM Intelligence Agent
+- **Role:** Track executive movements across LinkedIn, Bloomberg, and industry news — flag opportunities before competitors
+- **Pain:** Partner spends ~15 hours monthly manually monitoring market moves
+- **KPI:** Executive movements flagged, org chart updates pushed, time-to-alert
 
-- **Hook:** Watch CRM updates happen automatically after client meetings
-- **Pain:** CRM records incomplete; partner spends ~8 hours monthly logging notes from memory
-- **Value:** Higher data fidelity; never lose track of client relationships
+### Office Operations Specialist
+
+- **Role:** Format presentations, enter candidate data, handle repeatable admin — output reviewed, not drafted
+- **Pain:** Partner spends ~10 hours monthly on admin that a specialist should handle
+- **KPI:** Admin hours reclaimed, presentation turnaround time
 
 ## Value Discovery
 
-We start with a strategic assessment of partner time — where hours go today, what liberation means for placement capacity, and which agents fit first. Pricing follows the value framework you discover together.
+We start with an Agent Workforce Audit — baseline your firm's partner time, map an org chart with proposed agent roles, and write the first agent's job description with hard KPIs. The audit output is a measurement pack: hours saved, CRM completeness, admin drag quantified.
 
-- Typical ROI within 2–3 months for executive search firms
-- Modular rollout: start with Market Intelligence (highest ROI), add Office and CRM agents as results prove out
+- Phase 1 Audit (10–15k HKD): org chart + KPI baseline + Agent #1 job description
+- Phase 2 Pilot (30 days): one agent in one narrow role, measured against the baseline
+- Phase 3 Ongoing: monthly retainer per agent if KPIs hit. Add agent #2, #3 — each is a new hire, not a new project
 
 ## How It Works
 
-1. **Time Discovery Session** — See how much partner time you could redirect to client relationships and placements
-2. **Agent Capability Mapping** — Identify which tasks agents could handle so partners focus on high-value work
-3. **Relationship Time Enablement** — Map requirements while calculating what freed time enables for client relationships
+1. **Audit & baseline** — We map your org chart, measure the time sink, and define the agent's job description with hard KPIs — before anything goes live.
+2. **Place & prove** — 30-day pilot with one agent in one narrow role. Same task, same operator — measured with and without the agent.
+3. **Convert & expand** — KPI threshold hit? The agent stays on monthly retainer. Add the next hire — each new agent is a seat, not a new project.
 
 ## Frequently Asked Questions
 
@@ -62,8 +65,8 @@ We integrate with any CRM that has API access (HubSpot, Zoho, custom solutions, 
 **Can we start with one agent?**  
 Yes. Most firms start with Market Intelligence Agent (highest ROI), then add Office and CRM agents.
 
-**How does pricing work?**  
-Value discovery first, then investment levels designed around the value you discover — typically setup plus monthly value meaningfully less than what you save.
+**How does pricing work?**
+Phase 1 Agent Workforce Audit (10–15k HKD) — baseline KPIs, org chart, agent job description. Phase 2 Pilot (30 days, bundled onboarding) — one agent, narrow role, measured against baseline. Phase 3 Ongoing — monthly retainer per agent if KPIs hit. Tacite renewal, 14 days cancellation. Each additional agent adds a seat at the same monthly — not a new project.
 
 ## Calls to Action
 
