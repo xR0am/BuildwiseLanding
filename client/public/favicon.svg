@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Buildwise">
+  <rect width="32" height="32" rx="6" fill="#F8F7F5"/>
+  <path
+    d="M16 28c6.23-.05 7.87-5.57 7.5-10-.36-4.34-3.95-9.96-7.5-10-3.55.04-7.14 5.66-7.5 10-.37 4.43 1.27 9.95 7.5 10z"
+    fill="none"
+    stroke="#D4A574"
+    stroke-width="2.25"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
