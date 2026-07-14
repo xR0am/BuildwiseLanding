@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How We Work — 6 Options</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,sans-serif;background:#F8F7F5;color:#1A1A1A;padding:40px 24px;-webkit-font-smoothing:antialiased}
+  h1{font-size:28px;font-weight:700;text-align:center;margin-bottom:8px;letter-spacing:-0.02em}
+  .subtitle{text-align:center;color:#5C6470;font-size:14px;margin-bottom:48px}
+
+  .options{display:flex;flex-direction:column;gap:64px;max-width:1100px;margin:0 auto}
+
+  .opt{background:#fff;border-radius:20px;border:1px solid #e5e5e5;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.04)}
+  .opt__label{padding:16px 24px;border-bottom:1px solid #e5e5e5;display:flex;align-items:center;gap:12px}
+  .opt__num{width:28px;height:28px;border-radius:50%;background:#D4A574;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .opt__name{font-size:15px;font-weight:600}
+  .opt__desc{font-size:12px;color:#5C6470;margin-left:auto}
+
+  .opt__body{padding:40px 32px;display:flex;align-items:center;justify-content:center;min-height:280px}
+
+  :root{--amber:#D4A574;--ink:#1A1A1A;--muted:#5C6470;--bg:#F8F7F5}
+
+  /* ── option 1: timeline track ── */
+  .o1-track{position:relative;width:100%;max-width:850px}
+  .o1-rail{position:absolute;top:43px;left:0;right:0;height:2px;background:var(--amber);opacity:0.3}
+  .o1-nodes{display:flex;justify-content:space-between;position:relative}
+  .o1-node{display:flex;flex-direction:column;align-items:center;text-align:center;flex:1;max-width:200px}
+  .o1-circle{width:28px;height:28px;border-radius:50%;background:#fff;border:2px solid var(--amber);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--amber);margin-bottom:20px;position:relative;z-index:1}
+  .o1-circle.active{background:var(--amber);color:#fff;box-shadow:0 0 0 8px rgba(212,165,116,0.12)}
+  .o1-meta{font-size:11px;font-weight:600;color:var(--amber);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px}
+  .o1-title{font-size:16px;font-weight:700;margin-bottom:6px}
+  .o1-body{font-size:12px;color:var(--muted);line-height:1.5}
+
+  /* ── option 2: three-column pipeline ── */
+  .o2-pipeline{display:flex;align-items:flex-start;gap:0;width:100%;max-width:900px}
+  .o2-card{flex:1;padding:28px 24px;border-radius:14px;text-align:center;position:relative}
+  .o2-card:nth-child(1){background:#F8F7F5}
+  .o2-card:nth-child(3){background:#FAF6F2}
+  .o2-card:nth-child(5){background:#F6EFE7}
+  .o2-icon{font-size:28px;margin-bottom:10px}
+  .o2-num{font-size:40px;font-weight:800;color:var(--amber);opacity:0.25;margin-bottom:6px;line-height:1}
+  .o2-title{font-size:16px;font-weight:700;margin-bottom:8px}
+  .o2-body{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:12px}
+  .o2-stat{font-size:11px;font-weight:600;color:var(--amber);text-transform:uppercase;letter-spacing:0.03em}
+  .o2-arrow{display:flex;align-items:center;justify-content:center;padding-top:50px;flex-shrink:0}
+  .o2-arrow svg{width:40px;height:16px;color:var(--amber);opacity:0.5}
+
+  /* ── option 3: staircase ── */
+  .o3-stairs{display:flex;flex-direction:column;gap:16px;width:100%;max-width:650px}
+  .o3-step{display:flex;align-items:center;gap:20px;padding:24px 28px;background:#fff;border:1px solid #e5e5e5;border-radius:14px;transition:transform 0.2s}
+  .o3-step:hover{transform:translateX(4px)}
+  .o3-step:nth-child(1){margin-left:0;background:#F8F7F5}
+  .o3-step:nth-child(2){margin-left:40px;background:#FAF6F2}
+  .o3-step:nth-child(3){margin-left:80px;background:#F6EFE7}
+  .o3-s-circle{width:44px;height:44px;border-radius:50%;background:var(--amber);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;flex-shrink:0}
+  .o3-s-content{flex:1}
+  .o3-s-title{font-size:15px;font-weight:700;margin-bottom:4px}
+  .o3-s-body{font-size:12px;color:var(--muted);line-height:1.5}
+  .o3-s-stat{font-size:11px;font-weight:600;color:var(--amber);margin-top:6px}
+
+  /* ── option 4: kanban ── */
+  .o4-board{display:flex;gap:20px;width:100%;max-width:900px}
+  .o4-column{flex:1;background:#F8F7F5;border-radius:14px;overflow:hidden;border:1px solid #e5e5e5}
+  .o4-col-header{padding:14px 18px;font-size:13px;font-weight:700;border-bottom:1px solid #e5e5e5;display:flex;align-items:center;gap:8px}
+  .o4-col-dot{width:10px;height:10px;border-radius:50%}
+  .o4-col-dot.p1{background:#D4A574}
+  .o4-col-dot.p2{background:#E0B888}
+  .o4-col-dot.p3{background:#ECC9A0}
+  .o4-col-body{padding:24px 18px}
+  .o4-card-inner{background:#fff;border-radius:10px;padding:18px;border:1px solid #e5e5e5;box-shadow:0 1px 4px rgba(0,0,0,0.04)}
+  .o4-card-title{font-size:14px;font-weight:700;margin-bottom:6px}
+  .o4-card-body{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:10px}
+  .o4-card-badge{display:inline-block;font-size:10px;font-weight:600;padding:3px 8px;border-radius:20px;background:rgba(212,165,116,0.12);color:var(--amber)}
+
+  /* ── option 5: radial ── */
+  .o5-radial{position:relative;width:320px;height:320px;display:flex;align-items:center;justify-content:center}
+  .o5-ring{position:absolute;inset:0}
+  .o5-center{width:60px;height:60px;border-radius:50%;background:var(--amber);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;z-index:2}
+  .o5-segments{position:absolute;inset:0}
+  .o5-seg{position:absolute;width:100%;height:100%}
+  .o5-labels{display:flex;justify-content:space-between;width:100%;max-width:700px;margin-top:-20px}
+  .o5-label{text-align:center;flex:1}
+  .o5-l-title{font-size:14px;font-weight:700;margin-bottom:4px}
+  .o5-l-body{font-size:11px;color:var(--muted);line-height:1.4}
+
+  /* ── option 6: blueprint ── */
+  .o6-blueprint{width:100%;max-width:850px;position:relative;padding:40px 20px}
+  .o6-zones{display:flex;justify-content:space-between;gap:24px}
+  .o6-zone{flex:1;position:relative;padding:28px 20px;border:1px solid #D4A57440;border-radius:4px;background:linear-gradient(135deg, rgba(212,165,116,0.04) 0%, transparent 50%)}
+  .o6-zone::before{content:'';position:absolute;top:-8px;left:16px;background:#fff;padding:0 8px;font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.05em}
+  .o6-zone:nth-child(1)::before{content:'PHASE 1'}
+  .o6-zone:nth-child(2)::before{content:'PHASE 2'}
+  .o6-zone:nth-child(3)::before{content:'PHASE 3'}
+  .o6-z-title{font-size:15px;font-weight:700;margin-bottom:8px}
+  .o6-z-body{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:10px}
+  .o6-z-measure{font-size:10px;font-family:'SF Mono','Fira Code',monospace;color:var(--amber);border-top:1px dashed #D4A57430;padding-top:8px}
+
+  .o6-connectors{position:absolute;top:50%;left:0;right:0;pointer-events:none}
+  .o6-connector{position:absolute;top:0;height:1px;background:var(--amber);opacity:0.2}
+
+  /* mobile */
+  @media (max-width:700px){
+    .o2-pipeline,.o4-board,.o6-zones{flex-direction:column}
+    .o2-arrow{display:none}
+    .o3-step:nth-child(2){margin-left:20px}
+    .o3-step:nth-child(3){margin-left:40px}
+    .o1-nodes{flex-direction:column;align-items:center;gap:32px}
+    .o1-rail{display:none}
+  }
+</style>
+</head>
+<body>
+
+<h1>How We Work — 6 visual directions</h1>
+<p class="subtitle">Same steps (Audit → Place → Convert), different visual language. Pick your vibe.</p>
+
+<div class="options">
+
+  <!-- 1: Timeline Track -->
+  <div class="opt">
+    <div class="opt__label">
+      <span class="opt__num">1</span>
+      <span class="opt__name">Timeline track with milestone nodes</span>
+      <span class="opt__desc">subway-map / clean progression</span>
+    </div>
+    <div class="opt__body">
+      <div class="o1-track">
+        <div class="o1-rail"></div>
+        <div class="o1-nodes">
+          <div class="o1-node">
+            <div class="o1-circle active">1</div>
+            <div class="o1-meta">Week 1–2</div>
+            <div class="o1-title">Audit &amp; baseline</div>
+            <div class="o1-body">Org chart, time-sink measurement, agent job description with hard KPIs — before anything goes live.</div>
+          </div>
+          <div class="o1-node">
+            <div class="o1-circle">2</div>
+            <div class="o1-meta">30 days</div>
+            <div class="o1-title">Place &amp; prove</div>
+            <div class="o1-body">One agent, one narrow role. Same task measured with and without the agent — hard numbers, not projections.</div>
+          </div>
+          <div class="o1-node">
+            <div class="o1-circle">3</div>
+            <div class="o1-meta">Ongoing</div>
+            <div class="o1-title">Convert &amp; expand</div>
+            <div class="o1-body">KPI threshold hit → monthly retainer. Each new agent is a seat, not a new project. Add as you grow.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2: Pipeline -->
+  <div class="opt">
+    <div class="opt__label">
+      <span class="opt__num">2</span>
+      <span class="opt__name">Three-column pipeline with fat arrows</span>
+      <span class="opt__desc">bold / product-diagram</span>
+    </div>
+    <div class="opt__body">
+      <div class="o2-pipeline">
+        <div class="o2-card">
+          <div class="o2-icon">📋</div>
+          <div class="o2-num">01</div>
+          <div class="o2-title">Audit &amp; baseline</div>
+          <div class="o2-body">Org chart, time-sink measurement, agent job description with hard KPIs.</div>
+          <div class="o2-stat">~1 week</div>
+        </div>
+        <div class="o2-arrow">
+          <svg viewBox="0 0 40 16" fill="none"><path d="M0 8h32l-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="o2-card">
+          <div class="o2-icon">▶️</div>
+          <div class="o2-num">02</div>
+          <div class="o2-title">Place &amp; prove</div>
+          <div class="o2-body">30-day pilot. One agent, one role. Measured against baseline.</div>
+          <div class="o2-stat">30 days</div>
+        </div>
+        <div class="o2-arrow">
+          <svg viewBox="0 0 40 16" fill="none"><path d="M0 8h32l-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="o2-card">
+          <div class="o2-icon">🔁</div>
+          <div class="o2-num">03</div>
+          <div class="o2-title">Convert &amp; expand</div>
+          <div class="o2-body">KPIs hit → monthly retainer. Add agents as seats, not new projects.</div>
+          <div class="o2-stat">Monthly</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3: Staircase -->
+  <div class="opt">
+    <div class="opt__label">
+      <span class="opt__num">3</span>
+      <span class="opt__name">Ascending staircase — compounding value</span>
+      <span class="opt__desc">growth-story / momentum</span>
+    </div>
+    <div class="opt__body">
+      <div class="o3-stairs">
+        <div class="o3-step">
+          <div class="o3-s-circle">1</div>
+          <div class="o3-s-content">
+            <div class="o3-s-title">Audit &amp; baseline</div>
+            <div class="o3-s-body">Org chart, time-sink measurement, agent job description with hard KPIs — before anything goes live.</div>
+            <div class="o3-s-stat">Foundation → ~1 week</div>
+          </div>
+        </div>
+        <div class="o3-step">
+          <div class="o3-s-circle">2</div>
+          <div class="o3-s-content">
+            <div class="o3-s-title">Place &amp; prove</div>
+            <div class="o3-s-body">30-day pilot with one agent in one narrow role. Same task measured with and without the agent.</div>
+            <div class="o3-s-stat">Proof → 30 days</div>
+          </div>
+        </div>
+        <div class="o3-step">
+          <div class="o3-s-circle">3</div>
+          <div class="o3-s-content">
+            <div class="o3-s-title">Convert &amp; expand</div>
+            <div class="o3-s-body">KPI threshold hit? The agent stays on monthly retainer. Add the next hire — each a seat, not a project.</div>
+            <div class="o3-s-stat">Scale → Monthly</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4: Kanban -->
+  <div class="opt">
+    <div class="opt__label">
+      <span class="opt__num">4</span>
+      <span class="opt__name">Kanban-style swimlane board</span>
+      <span class="opt__desc">familiar / ops-friendly</span>
+    </div>
+    <div class="opt__body">
+      <div class="o4-board">
+        <div class="o4-column">
+          <div class="o4-col-header"><span class="o4-col-dot p1"></span> Phase 1 — Audit</div>
+          <div class="o4-col-body">
+            <div class="o4-card-inner">
+              <div class="o4-card-title">Baseline the workflow</div>
+              <div class="o4-card-body">Org chart, time-sink measurement, agent job description with hard KPIs — before anything goes live.</div>
+              <span class="o4-card-badge">~1 week</span>
+            </div>
+          </div>
+        </div>
+        <div class="o4-column">
+          <div class="o4-col-header"><span class="o4-col-dot p2"></span> Phase 2 — Pilot</div>
+          <div class="o4-col-body">
+            <div class="o4-card-inner">
+              <div class="o4-card-title">Prove the agent</div>
+              <div class="o4-card-body">30 days, one agent, one narrow role. Same task measured with and without the agent.</div>
+              <span class="o4-card-badge">30 days</span>
+            </div>
+          </div>
+        </div>
+        <div class="o4-column">
+          <div class="o4-col-header"><span class="o4-col-dot p3"></span> Phase 3 — Retainer</div>
+          <div class="o4-col-body">
+            <div class="o4-card-inner">
+              <div class="o4-card-title">Convert &amp; scale</div>
+              <div class="o4-card-body">KPIs hit → monthly retainer. Add agents as seats, not new projects. Expand your workforce.</div>
+              <span class="o4-card-badge">Monthly</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5: Radial -->
+  <div class="opt">
+    <div class="opt__label">
+      <span class="opt__num">5</span>
+      <span class="opt__name">Radial / segmented ring with pulsing center</span>
+      <span class="opt__desc">premium / motion-graphic statement</span>
+    </div>
+    <div class="opt__body" style="flex-direction:column;gap:32px">
+      <div style="position:relative;width:260px;height:260px;flex-shrink:0">
+        <svg viewBox="0 0 260 260" style="width:100%;height:100%">
+          <!-- outer ring -->
+          <circle cx="130" cy="130" r="120" fill="none" stroke="#D4A57415" stroke-width="8"/>
+          <!-- segments -->
+          <circle cx="130" cy="130" r="120" fill="none" stroke="#D4A574" stroke-width="8" stroke-dasharray="251 502" stroke-dashoffset="0" stroke-linecap="round" opacity="0.9"/>
+          <circle cx="130" cy="130" r="120" fill="none" stroke="#E0B888" stroke-width="8" stroke-dasharray="251 502" stroke-dashoffset="-251" stroke-linecap="round" opacity="0.6"/>
+          <circle cx="130" cy="130" r="120" fill="none" stroke="#ECC9A0" stroke-width="8" stroke-dasharray="251 502" stroke-dashoffset="-502" stroke-linecap="round" opacity="0.35"/>
+          <!-- inner circle -->
+          <circle cx="130" cy="130" r="44" fill="#D4A574"/>
+          <text x="130" y="135" text-anchor="middle" fill="#fff" font-size="17" font-weight="800" font-family="Inter,sans-serif">AW</text>
+          <!-- separators -->
+          <line x1="130" y1="10" x2="130" y2="32" stroke="#F8F7F5" stroke-width="3"/>
+          <line x1="235" y1="70" x2="214" y2="82" stroke="#F8F7F5" stroke-width="3"/>
+          <line x1="246" y1="190" x2="224" y2="178" stroke="#F8F7F5" stroke-width="3"/>
+        </svg>
+      </div>
+      <div class="o5-labels" style="gap:40px">
+        <div class="o5-label">
+          <div class="o5-l-title">01 · Audit &amp; baseline</div>
+          <div class="o5-l-body">Org chart, KPIs, job description</div>
+        </div>
+        <div class="o5-label">
+          <div class="o5-l-title">02 · Place &amp; prove</div>
+          <div class="o5-l-body">30-day pilot, measured results</div>
+        </div>
+        <div class="o5-label">
+          <div class="o5-l-title">03 · Convert &amp; expand</div>
+          <div class="o5-l-body">Monthly retainer, add seats</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6: Blueprint -->
+  <div class="opt">
+    <div class="opt__label">
+      <span class="opt__num">6</span>
+      <span class="opt__name">Blueprint / architectural diagram</span>
+      <span class="opt__desc">technical / precision-engineered</span>
+    </div>
+    <div class="opt__body">
+      <div class="o6-blueprint">
+        <div class="o6-zones">
+          <div class="o6-zone">
+            <div class="o6-z-title">Audit &amp; baseline</div>
+            <div class="o6-z-body">Org chart, time-sink measurement, agent job description with hard KPIs — before anything goes live.</div>
+            <div class="o6-z-measure">⏱ ~1 week · 📐 baseline established</div>
+          </div>
+          <div class="o6-zone">
+            <div class="o6-z-title">Place &amp; prove</div>
+            <div class="o6-z-body">30-day pilot with one agent in one narrow role. Same task measured with and without the agent.</div>
+            <div class="o6-z-measure">⏱ 30 days · 📊 KPI delta measured</div>
+          </div>
+          <div class="o6-zone">
+            <div class="o6-z-title">Convert &amp; expand</div>
+            <div class="o6-z-body">KPI threshold hit? Agent stays on monthly retainer. Add agents as seats — not a new project.</div>
+            <div class="o6-z-measure">🔄 Monthly · 📈 agents compound</div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:16px;padding:0 20px">
+          <svg width="100%" height="12" viewBox="0 0 760 12" preserveAspectRatio="none" style="overflow:visible">
+            <line x1="0" y1="6" x2="760" y2="6" stroke="#D4A574" stroke-width="0.5" stroke-dasharray="4 6" opacity="0.3"/>
+            <polygon points="754,3 760,6 754,9" fill="#D4A574" opacity="0.3"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
