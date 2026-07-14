@@ -55,14 +55,14 @@ const HowItWorksBrief: React.FC = () => {
         </div>
 
         {/* Desktop: three equal cards in a row with arrows between */}
-        <div className="hidden md:grid md:grid-cols-[1fr_auto_1fr_auto_1fr] items-start gap-0">
+        <div className="hidden md:flex items-stretch justify-center">
           {phases.map((p, i) => (
             <React.Fragment key={p.phase}>
               <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: i * 0.2, duration: 0.5 }}
-                className="rounded-2xl border border-border/60 bg-white p-7 text-center shadow-sm"
+                className="flex-1 max-w-[260px] flex flex-col rounded-2xl border border-border/60 bg-white p-7 text-center shadow-sm"
               >
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <span className="w-2 h-2 rounded-full bg-[#D4A574]" />
@@ -71,7 +71,7 @@ const HowItWorksBrief: React.FC = () => {
                   </span>
                 </div>
                 <h3 className="font-sans text-lg font-bold text-[#1A1A1A] mb-2">{p.title}</h3>
-                <p className="text-sm text-subtle font-light leading-relaxed mb-5">{p.body}</p>
+                <p className="text-sm text-subtle font-light leading-relaxed mb-5 flex-1">{p.body}</p>
                 <span className="inline-block text-[11px] font-semibold text-[#D4A574] uppercase tracking-wider bg-[#D4A574]/8 rounded-full px-3 py-1.5">
                   {p.stat}
                 </span>
@@ -82,7 +82,7 @@ const HowItWorksBrief: React.FC = () => {
                   initial={{ opacity: 0 }}
                   animate={inView ? { opacity: 1 } : {}}
                   transition={{ delay: i * 0.2 + 0.3, duration: 0.4 }}
-                  className="flex items-center justify-center px-2 pt-6"
+                  className="flex items-center shrink-0 px-2"
                 >
                   <Arrow />
                 </motion.div>
