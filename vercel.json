@@ -1,4 +1,11 @@
 {
+    "redirects": [
+        {
+            "source": "/webbe-octus",
+            "destination": "https://rtjvujvjzeq4.postplan.dev/",
+            "permanent": false
+        }
+    ],
     "rewrites": [
         { "source": "/(.*)", "destination": "/index.html" }
     ]
